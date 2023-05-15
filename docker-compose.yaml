@@ -1,13 +1,43 @@
-# volumes:
+volumes:
+  healthgpt-data:
+    external: true
+  pg-admin:
+    external: true
+
 services:
   fastapi:
     build:
       context: sample_service
       dockerfile: Dockerfile.dev
+    environment:
+      DATABASE_URL: postgresql://healthgpt:healthgpt@postgres/healthgpt
+      WAIT_HOSTS: postgres:5432
     ports:
       - 8000:8000
     volumes:
       - ./sample_service:/app
+
+  postgres:
+    image: postgres
+    environment:
+      POSTGRES_PASSWORD: healthgpt
+      POSTGRES_USER: healthgpt
+      POSTGRES_DB: healthgpt
+    ports:
+      - "15432:5432"
+    volumes:
+      - healthgpt-data:/var/lib/postgresql/data
+
+  # pg-admin:
+  #   image: dpage/pgadmin4
+  #   volumes:
+  #       - pg-admin:/var/lib/pgadmin
+  #   ports:
+  #       - 8082:80
+  #   environment:
+  #       PGADMIN_DEFAULT_EMAIL: 5lackers.nb@gmail.com
+  #       PGADMIN_DEFAULT_PASSWORD: notbrad
+  #       PGADMIN_DISABLE_POSTFIX: 1
 
   ghi:
     image: node:lts-bullseye
