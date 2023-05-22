@@ -6,7 +6,8 @@ steps = [
             eaten_meal_id SERIAL PRIMARY KEY NOT NULL,
             name VARCHAR(255),
             type VARCHAR(255) NOT NULL,
-            datetime_eaten TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            datetime_eaten TIMESTAMP,
+            datetime_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
             user_id INT REFERENCES accounts (id)
         );
         """,
