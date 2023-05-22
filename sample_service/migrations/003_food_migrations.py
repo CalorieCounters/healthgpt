@@ -12,7 +12,7 @@ steps = [
         """,
         # "Down" SQL statement
         """
-        DROP TABLE accounts;
+        DROP TABLE eaten_meals;
         """,
     ],
     [
@@ -40,7 +40,7 @@ steps = [
         """,
         # "Down" SQL statement
         """
-        DROP TABLE accounts;
+        DROP TABLE food_items;
         """,
     ]
 ]
