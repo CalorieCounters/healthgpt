@@ -10,6 +10,7 @@ services:
       context: sample_service
       dockerfile: Dockerfile.dev
     environment:
+      SIGNING_KEY: e4d7f1b6-a6d9-4f1b-a71d-4e8679cf638c
       DATABASE_URL: postgresql://healthgpt:healthgpt@postgres/healthgpt
       WAIT_HOSTS: postgres:5432
     ports:
