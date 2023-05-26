@@ -1,31 +1,12 @@
-from pydantic import BaseModel
 from db import pool
 from typing import Union
+from models.accounts import (
+    AccountIn,
+    AccountOut,
+    HttpError,
+    DuplicateAccountError,
+)
 
-
-class HttpError(BaseModel):
-    detail: str
-
-
-class DuplicateAccountError(ValueError):
-    pass
-
-
-class AccountIn(BaseModel):
-    first_name: str
-    last_name: str
-    username: str
-    email: str
-    password: str
-
-
-class AccountOut(BaseModel):
-    id: int
-    first_name: str
-    last_name: str
-    username: str
-    email: str
-    hashed_password: str
 
 # class Error(BaseModel):
 #     message: str
@@ -33,6 +14,7 @@ class AccountOut(BaseModel):
 class AccountOutWithPassword(AccountOut):
     hashed_password: str
     #todo: fix always send password to the corect way
+
 
 class AccountQueries:
     def create_account(self, account: AccountIn, hashed_password: str) -> AccountOut:
