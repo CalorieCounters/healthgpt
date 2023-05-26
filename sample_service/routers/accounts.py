@@ -75,8 +75,6 @@ async def create_account(
         form = AccountForm(username=info.username, password=info.password)
         token = await authenticator.login(response, request, form, repo)
         return AccountToken(account=account, **token.dict())
-        # return account
-    #todo: add auto login feature
     except DuplicateAccountError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
