@@ -4,3 +4,4 @@ pytest
 psycopg
 psycopg_pool
 jwtdown-fastapi>= 0.5.0
+requests

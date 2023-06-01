@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Construct from "./Construct.js";
 import ErrorNotification from "./ErrorNotification";
 import "./App.css";
+import MealForm from "./MealForm.js";
 
 function App() {
   const [launchInfo, setLaunchInfo] = useState([]);
@@ -28,8 +29,10 @@ function App() {
 
   return (
     <div>
-      <ErrorNotification error={error} />
-      <Construct info={launchInfo} />
+      {/* <ErrorNotification error={error} /> */}
+      {/* <Construct info={launchInfo} /> */}
+      <MealForm />
+
     </div>
   );
 }
