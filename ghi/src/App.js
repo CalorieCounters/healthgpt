@@ -1,7 +1,10 @@
 import { useEffect, useState } from "react";
-import Construct from "./Construct.js";
-import ErrorNotification from "./ErrorNotification";
+import {BrowserRouter, Routes, Route} from "react-router-dom";
+import HomePage from "./HomePage.js";
+import Nav from "./Nav";
 import "./App.css";
+// import ErrorNotification from "./ErrorNotification";
+
 
 function App() {
   const [launchInfo, setLaunchInfo] = useState([]);
@@ -27,10 +30,19 @@ function App() {
   }, []);
 
   return (
-    <div>
-      <ErrorNotification error={error} />
-      <Construct info={launchInfo} />
-    </div>
+    // <div>
+    //   <ErrorNotification error={error} />
+    //   <Construct info={launchInfo} />
+    // </div>
+
+    <BrowserRouter>
+      <Nav />
+      <div className="container">
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+        </Routes>
+      </div>
+    </BrowserRouter>
   );
 }
 
