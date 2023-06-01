@@ -46,3 +46,7 @@ class EatenMeal(BaseModel):
 
 class HttpError(BaseModel):
     detail: str
+
+
+class NutrientQuery(BaseModel):
+    query: str

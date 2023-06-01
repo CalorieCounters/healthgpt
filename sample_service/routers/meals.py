@@ -8,7 +8,7 @@ from fastapi import (
 )
 from authentication import authenticator
 from queries.meals import MealQueries, FoodItemQueries
-from models.meals import MealIn, EatenMeal, HttpError
+from models.meals import MealIn, EatenMeal, HttpError, NutrientQuery
 
 
 router = APIRouter()
@@ -19,11 +19,11 @@ def create_meal(
     meal: MealIn,
     response: Response,
     repo: MealQueries = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data)
+    # account_data: dict = Depends(authenticator.get_current_account_data)
 ):
-
-    user_id = account_data['id']
-    return repo.create(meal, user_id)
+    print("INSIDE ROUTER GET NUTS", meal)
+    # user_id = account_data['id']
+    return repo.create(meal, 1)
 
 
 @router.post("/natural/nutrients", response_model=list | HttpError)
@@ -33,4 +33,5 @@ def get_nutrients(
     repo: FoodItemQueries = Depends(),
     # account_data: dict = Depends(authenticator.get_current_account_data)
 ):
+    print("INSIDE ROUTER GET NUTS", query)
     return repo.get_food_items(query)

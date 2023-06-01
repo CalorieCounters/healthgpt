@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react'
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 const MealForm = () => {
+    const {fetchWithToken} = useToken()
     const [query, setQuery] = useState('');
     const [foodItems, setFoodItems] = useState([]);
 
@@ -99,7 +101,6 @@ const MealForm = () => {
                     })}
                     </tbody>
                 </table>
-
                 <button onClick={handleLog} className="btn btn-success w-100">Log Meal</button>
             </div>
         </div>
