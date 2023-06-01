@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {BrowserRouter, Routes, Route} from "react-router-dom";
 import HomePage from "./HomePage.js";
+import Dashboard from "./Dashboard.js"
 import Nav from "./Nav";
 import "./App.css";
 // import ErrorNotification from "./ErrorNotification";
@@ -40,6 +41,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<HomePage />} />
+            <Route path="dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </BrowserRouter>

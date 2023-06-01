@@ -1,0 +1,9 @@
+body {
+    height: 100px;
+    background-color:#96A7CF;
+    background-image:
+    linear-gradient(
+        to left,
+        #96A7CF, #E3EFE8
+    );
+}
