@@ -1,27 +1,15 @@
 from db import pool
-from typing import Union
-from models.accounts import (
-    AccountIn,
-    AccountOut,
-    HttpError,
-    DuplicateAccountError,
-)
-
-
-# class Error(BaseModel):
-#     message: str
-
-class AccountOutWithPassword(AccountOut):
-    hashed_password: str
-    #todo: fix always send password to the corect way
+from models.accounts import AccountIn, AccountOut, HttpError
 
 
 class AccountQueries:
-    def create_account(self, account: AccountIn, hashed_password: str) -> AccountOut:
+    def create_account(
+        self, account: AccountIn, hashed_password: str
+    ) -> AccountOut:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
-                    db.execute(
+                    result = db.execute(
                         """
                         INSERT INTO accounts (
                             first_name,
@@ -38,12 +26,12 @@ class AccountQueries:
                             account.last_name,
                             account.username,
                             account.email,
-                            hashed_password
+                            hashed_password,
                         ],
                     )
-                    id = db.fetchone()[0]
+                    id = result.fetchone()[0]
 
-                    acc = AccountOut(
+                    account = AccountOut(
                         id=id,
                         first_name=account.first_name,
                         last_name=account.last_name,
@@ -51,8 +39,7 @@ class AccountQueries:
                         email=account.email,
                         hashed_password=hashed_password,
                     )
-                    return acc
-
+                    return account
         except Exception as error:
             return {"detail": str(error)}
 
@@ -69,8 +56,9 @@ class AccountQueries:
                         [username],
                     )
                     record = result.fetchone()
+                    
                     if record is None:
-                        return HttpError(message="does not exist") #todo: not giving error, will fix later
+                        return HttpError(message="does not exist")
                     return AccountOut(
                         id=record[0],
                         first_name=record[1],
@@ -80,11 +68,4 @@ class AccountQueries:
                         hashed_password=record[5],
                     )
         except Exception as error:
-            print("hehehe", error)
             return {"detail": str(error)}
-
-
-
-    # def update_account(self, account_id, account: AccountIn) -> AccountOut:
-    #     with pool.connection() as conn:
-    #         with conn.cursor() as cur:

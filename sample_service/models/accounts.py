@@ -1,6 +1,7 @@
 from pydantic import BaseModel
 from jwtdown_fastapi.authentication import Token
 
+
 class AccountForm(BaseModel):
     username: str
     password: str
