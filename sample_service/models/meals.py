@@ -50,3 +50,4 @@ class HttpError(BaseModel):
 
 class NutrientQuery(BaseModel):
     query: str
+
