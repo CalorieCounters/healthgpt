@@ -1,14 +1,12 @@
 from pydantic import BaseModel
-from jwtdown_fastapi.authentication import Token
 from typing import List, Optional
-from db import pool
 import datetime
 
 
 class FoodItem(BaseModel):
-    food_id: int
+    food_id: Optional[int]
     food_name: str
-    brand_name: str
+    brand_name: Optional[str]
     serving_qty: float
     serving_unit: float
     serving_weight_grams: float
@@ -23,7 +21,7 @@ class FoodItem(BaseModel):
     protein: float
     potassium: float
     eaten_id: int
-    photo: str
+
 
 
 class MealIn(BaseModel):
