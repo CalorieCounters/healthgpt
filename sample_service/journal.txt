@@ -1,0 +1,20 @@
+May 15th
+
+* Decided which database to use
+
+Today we looked over our wireframe and considered the structure we imagine our models will take. 
+Based on this we decided to use PostgreSQL for our database. We considered MongoDB as well, but
+there didn't seem to be a necessity to go a non-relational route.
+
+
+May 17th
+
+* Started thinking about models
+
+
+Jun 2nd
+
+* 
+
+
+

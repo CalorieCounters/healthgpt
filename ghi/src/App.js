@@ -41,7 +41,7 @@ function App() {
       <div className="container">
         <Routes>
           <Route path="/" element={<HomePage />} />
-            <Route path="dashboard" element={<Dashboard />} />
+            <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </div>
     </BrowserRouter>
