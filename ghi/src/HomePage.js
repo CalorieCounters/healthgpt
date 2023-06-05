@@ -4,14 +4,6 @@ import Nav from './Nav'
 import {NavLink} from 'react-router-dom';
 
 
-// function Card() {
-//   return (
-//     <div>
-//       <img src="ghi/src/HealthGPT.jpg" alt="Card Image" />
-//     </div>
-//   );
-// }
-
 function HomePage() {
 
   const [navVisible, setNavVisible] = useState(false);
@@ -39,21 +31,6 @@ function HomePage() {
         ></div>
       )}
       <Nav navVisible={navVisible} toggleNav={toggleNav} />
-        {/* <div className={`navbar ${navVisible ? 'visible' : 'hidden'}`}>
-          <ul>
-            <li>
-              <NavLink exact to="/" activeClassName="active">
-                Home
-            </NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard" activeClassName="active">
-                Dashboard
-            </NavLink>
-            </li>
-        </ul>
-      </div> */}
-      {/* <Card /> */}
       <p>
         Our mission is to empower individuals to take control of their
         health and wellness by providing personalized solutions that help

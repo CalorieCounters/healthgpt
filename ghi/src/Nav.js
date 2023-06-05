@@ -3,8 +3,6 @@ import React from 'react';
 
 
 function Nav({navVisible, toggleNav}) {
-    // const location = useLocation();
-
     const handleLinkClick = () => {
         if (navVisible) {
             toggleNav();
