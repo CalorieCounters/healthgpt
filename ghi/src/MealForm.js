@@ -1,7 +1,14 @@
 import React, { useState } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
+import Nav from "./Nav";
 
 const MealForm = () => {
+  const [navVisible, setNavVisible] = useState(false);
+
+  const toggleNav = () => {
+    setNavVisible(!navVisible);
+  };
+
   const { token, fetchWithToken } = useToken();
   const [query, setQuery] = useState("");
   const [foodItems, setFoodItems] = useState([]);
@@ -163,7 +170,27 @@ const MealForm = () => {
   };
 
   return (
-    <div className="row">
+    <div>
+      {!navVisible && (
+        <button
+          className="navbar-toggle"
+          onClick={toggleNav}
+          style={{ position: "absolute", top: "10px", left: "10px" }}
+        >
+          Menu
+        </button>
+      )}
+      {navVisible && (
+        <div
+          className="overlay"
+          onClick={toggleNav}
+          style={{ position: "fixed", top: 0, bottom: 0, left: 0, right: 0 }}
+        ></div>
+      )}
+      <div>
+        <Nav navVisible={navVisible} toggleNav={toggleNav} />
+      </div>
+      {/* <div className="row"> */}
       <div className="offset-3 col-6">
         <h1 className="text-center">Log a Meal</h1>
         <form onSubmit={handleSeeNutrients} id="create-appointment-form">
