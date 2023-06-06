@@ -40,7 +40,7 @@ class AccountQueries:
                         username=account.username,
                         email=account.email,
                         hashed_password=hashed_password,
-                        gender=account.gender
+                        gender=account.gender,
                     )
                     return account
         except Exception as error:
@@ -69,7 +69,7 @@ class AccountQueries:
                         username=record[3],
                         email=record[4],
                         hashed_password=record[5],
-                        gender=record[6]
+                        gender=record[len(record) - 1],
                     )
         except Exception as error:
             return {"detail": str(error)}
