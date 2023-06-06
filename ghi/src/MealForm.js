@@ -67,6 +67,7 @@ const MealForm = () => {
     setShowNutrients(false);
   };
 
+  console.log("HEERERERERE", token)
 
   const fetchData = async () => {
     const nutrientUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/natural/nutrients`;
@@ -87,6 +88,7 @@ const MealForm = () => {
       fetchConfig
     );
 
+    console.log("DATTATA", response)
     setFoodItems(response);
     setQuery("");
     setShowNutrients(true);
