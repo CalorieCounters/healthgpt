@@ -47,6 +47,24 @@ function Nav({ navVisible, toggleNav }) {
             Eaten Meals
           </NavLink>
         </li>
+        <li>
+          <NavLink
+            to="/exercise-form"
+            activeclassname="active"
+            onClick={handleLinkClick}
+          >
+            Log an Exercise
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/exercise-list"
+            activeclassname="active"
+            onClick={handleLinkClick}
+          >
+            My Exercises
+          </NavLink>
+        </li>
       </ul>
     </nav>
   );

@@ -2,7 +2,6 @@ from db import pool
 from models.meals import EatenMeal, MealIn, FoodItem, HttpError
 import os
 import requests
-from models.meals import FoodItem
 from keys import X_APP_ID, X_APP_KEY
 
 
@@ -99,7 +98,9 @@ class MealQueries:
 
 
 class FoodItemQueries:
-    def create(self, food_items: list[FoodItem], eaten_id: int) -> list[FoodItem]:
+    def create(
+        self, food_items: list[FoodItem], eaten_id: int
+    ) -> list[FoodItem]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
