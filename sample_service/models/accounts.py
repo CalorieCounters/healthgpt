@@ -21,6 +21,7 @@ class AccountIn(BaseModel):
     username: str
     email: str
     password: str
+    gender: str
 
 
 class AccountOut(BaseModel):
@@ -30,6 +31,7 @@ class AccountOut(BaseModel):
     username: str
     email: str
     hashed_password: str
+    gender: str
 
 
 class AccountToken(Token):

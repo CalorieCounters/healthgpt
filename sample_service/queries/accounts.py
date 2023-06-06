@@ -16,9 +16,10 @@ class AccountQueries:
                             last_name,
                             username,
                             email,
-                            hashed_password
+                            hashed_password,
+                            gender
                             )
-                        VALUES (%s, %s, %s, %s, %s)
+                        VALUES (%s, %s, %s, %s, %s, %s)
                         RETURNING id;
                         """,
                         [
@@ -27,6 +28,7 @@ class AccountQueries:
                             account.username,
                             account.email,
                             hashed_password,
+                            account.gender,
                         ],
                     )
                     id = result.fetchone()[0]
@@ -38,6 +40,7 @@ class AccountQueries:
                         username=account.username,
                         email=account.email,
                         hashed_password=hashed_password,
+                        gender=account.gender
                     )
                     return account
         except Exception as error:
@@ -56,7 +59,7 @@ class AccountQueries:
                         [username],
                     )
                     record = result.fetchone()
-                    
+
                     if record is None:
                         return HttpError(message="does not exist")
                     return AccountOut(
@@ -66,6 +69,7 @@ class AccountQueries:
                         username=record[3],
                         email=record[4],
                         hashed_password=record[5],
+                        gender=record[6]
                     )
         except Exception as error:
             return {"detail": str(error)}
