@@ -44,7 +44,8 @@ function HomePage() {
         <button className="button">Log In</button>
       </div>
       </div>
-    </div>
+        
+      </div>
   );
 }
 
