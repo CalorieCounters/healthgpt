@@ -44,8 +44,88 @@ function HomePage() {
         <button className="button">Log In</button>
       </div>
       </div>
-        
+      <div className="container py-4">
+    <h1 className="mb-4">What we're here for</h1>
+    <div className="accordion" id="faqAccordion">
+    <div className="accordion-item">
+        <h2 className="accordion-header" id="faqHeading1">
+        <button
+            className="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#faqCollapse1"
+            aria-expanded="false"
+            aria-controls="faqCollapse1"
+        >
+            Track your consumption
+        </button>
+        </h2>
+        <div
+        id="faqCollapse1"
+        className="accordion-collapse collapse"
+        aria-labelledby="faqHeading1"
+        data-bs-parent="#faqAccordion"
+        >
+        <div className="accordion-body">
+            Using our meal submission form, easily track your
+            nutritional intake. HealthGPT will log your meals
+            along with all the assocoiated nutritional content.
+        </div>
+        </div>
+    </div>
+    <div className="accordion-item">
+        <h2 className="accordion-header" id="faqHeading2">
+        <button
+            className="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#faqCollapse2"
+            aria-expanded="false"
+            aria-controls="faqCollapse2"
+        >
+            Track your workouts
+        </button>
+        </h2>
+        <div
+        id="faqCollapse2"
+        className="accordion-collapse collapse"
+        aria-labelledby="faqHeading2"
+        data-bs-parent="#faqAccordion"
+        >
+        <div className="accordion-body">
+          Using our exercise submission form, track your
+          workouts and the calories you burn in the process.
+        </div>
+        </div>
+    </div>
+    <div className="accordion-item">
+        <h2 className="accordion-header" id="faqHeading3">
+        <button
+            className="accordion-button collapsed"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#faqCollapse3"
+            aria-expanded="false"
+            aria-controls="faqCollapse3"
+        >
+            Be your best self
+        </button>
+        </h2>
+        <div
+        id="faqCollapse3"
+        className="accordion-collapse collapse"
+        aria-labelledby="faqHeading3"
+        data-bs-parent="#faqAccordion"
+        >
+        <div className="accordion-body">
+          HealthGPT will use your meal and workout submissions
+          to give you a birds eye view of your health in real time.
+        </div>
+        </div>
       </div>
+    </div>
+    </div>
+    </div>
   );
 }
 

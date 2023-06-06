@@ -61,7 +61,20 @@ p {
     font-weight: bold;
 }
 
+.accordion-item {
+    background-color: #E4F5FF;
+    max-width: 500px;
+    margin: 0 auto;
+}
 
+.accordion-button {
+    background-color: #9294C2;
+}
+
+.accordion-button:not(.collapsed),
+.accordion-button:not(.collapsed):focus {
+    background-color: #9294C2;
+}
 /* body {
     height: 100px;
     background-color:#FFFCFF;
