@@ -8,6 +8,7 @@ import "./App.css";
 import MealForm from "./MealForm.js";
 import HomePage from "./HomePage";
 import Dashboard from "./Dashboard";
+import EatenMealList from "./EatenMealList";
 
 function App() {
   return (
@@ -16,11 +17,13 @@ function App() {
         <Nav />
         <div>
           <Routes>
+            <Route path="/" element={<HomePage />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
-            <Route path="/log-a-meal" element={<MealForm />} />
-            <Route path="/" element={<HomePage />} />
             <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/log-a-meal" element={<MealForm />} />
+            <Route path="/eaten-meals" element={<EatenMealList />} />
+
           </Routes>
         </div>
       </AuthProvider>
