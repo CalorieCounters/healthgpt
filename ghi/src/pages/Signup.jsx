@@ -127,62 +127,6 @@ function Signup() {
         <button className="btn btn-primary">Submit</button>
       </form>
     </div>
-    // <div>
-    //   <h1>SIGN UP</h1>
-    //   <form onSubmit={handleRegistration}>
-    //     <div>
-    //     <label htmlFor="firstName">First Name: </label>
-    //     <input onChange={handleFormChange}
-    //       placeholder="First Name"
-    //       required
-    //       type="text"
-    //       name="firstName"
-    //       value={formData.firstName}
-    //     />
-    //     </div>
-    //     <div>
-    //     <label htmlFor="lastName">Last Name: </label>
-    //     <input onChange={handleFormChange}
-    //       placeholder="Last Name"
-    //       required
-    //       type="text"
-    //       name="lastName"
-    //       value={formData.lastName}
-    //     />
-    //     </div>
-    //     <div>
-    //     <label htmlFor="username">Username: </label>
-    //     <input onChange={handleFormChange}
-    //       placeholder="Username"
-    //       required
-    //       type="text"
-    //       name="username"
-    //       value={formData.username}
-    //     />
-    //     </div>
-    //     <div>
-    //     <label htmlFor="email">Email: </label>
-    //     <input onChange={handleFormChange}
-    //       placeholder="Email"
-    //       required
-    //       type="email"
-    //       name="email"
-    //       value={formData.email}
-    //     />
-    //     </div>
-    //     <div>
-    //     <label htmlFor="password">Password: </label>
-    //     <input onChange={handleFormChange}
-    //       placeholder="Password"
-    //       required
-    //       type="password"
-    //       name="password"
-    //       value={formData.password}
-    //     />
-    //     </div>
-    //     <button>Submit</button>
-    //   </form>
-    // </div>
   );
 }
 

@@ -1,15 +1,12 @@
 from fastapi import Depends, APIRouter
-
-# from authentication import authenticator
+from authentication import authenticator
 from queries.meals import MealQueries, FoodItemQueries
 from models.meals import (
     MealIn,
     EatenMeal,
     HttpError,
-    # FoodItemsIn,
     FoodItem,
 )
-from authentication import authenticator
 
 router = APIRouter()
 

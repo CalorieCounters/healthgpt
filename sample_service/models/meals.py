@@ -1,5 +1,5 @@
 from pydantic import BaseModel
-from typing import List, Optional
+from typing import Optional
 import datetime
 
 
@@ -23,7 +23,6 @@ class FoodItem(BaseModel):
     eaten_id: int
 
 
-
 class MealIn(BaseModel):
     description: str
     name: Optional[str]
@@ -32,7 +31,7 @@ class MealIn(BaseModel):
 
 
 class MealOut(BaseModel):
-    food_items: List[FoodItem]
+    food_items: list[FoodItem]
 
 
 class EatenMeal(BaseModel):
