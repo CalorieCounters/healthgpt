@@ -4,6 +4,8 @@ import React, { useState } from "react";
 import "./Nav.css";
 
 function Nav({ navVisible, toggleNav }) {
+  const {token, baseUrl } = useAuthContext();
+  console.log('1235234523456', token, baseUrl)
   const handleLinkClick = () => {
     if (navVisible) {
       toggleNav();
@@ -34,6 +36,15 @@ function Nav({ navVisible, toggleNav }) {
             onClick={handleLinkClick}
           >
             Dashboard
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/eaten-meals"
+            activeclassname="active"
+            onClick={handleLinkClick}
+          >
+            Eaten Meals
           </NavLink>
         </li>
       </ul>

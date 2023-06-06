@@ -3,15 +3,10 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import Nav from "./Nav";
 
 const MealForm = () => {
-  const [navVisible, setNavVisible] = useState(false);
-
-  const toggleNav = () => {
-    setNavVisible(!navVisible);
-  };
-
-  const { token, fetchWithToken } = useToken();
-  const [query, setQuery] = useState("");
+  const { token, fetchWithToken } = useToken()
+  const [query, setQuery] = useState('');
   const [foodItems, setFoodItems] = useState([]);
+  const [navVisible, setNavVisible] = useState(false);
   const [description, setDescription] = useState("");
   const [name, setName] = useState("");
   const [type, setType] = useState("");
@@ -36,6 +31,10 @@ const MealForm = () => {
   const handleQueryChange = (event) => {
     const value = event.target.value;
     setQuery(value);
+  };
+
+  const toggleNav = () => {
+    setNavVisible(!navVisible);
   };
 
   const handleDescriptionChange = (event) => {
@@ -68,8 +67,9 @@ const MealForm = () => {
     setShowNutrients(false);
   };
 
+
   const fetchData = async () => {
-    const nutrientUrl = `http://localhost:8000/natural/nutrients`;
+    const nutrientUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/natural/nutrients`;
 
     const fetchConfig = {
       method: "POST",
@@ -92,9 +92,28 @@ const MealForm = () => {
     setShowNutrients(true);
   };
 
+    // const handleLog = async (event) => {
+    //     event.preventDefault();
+    //     // CREATING A MEAL, BUT WE STILL NEED TO ADD FOOD ITEMS TO THE MEAL
+    //     // TODO: Finish creating meal form with these fields
+    //     const mealData = {
+    //       description: description,
+    //       name: name,
+    //       type: type,
+    //       datetime_eaten: dateTimeEaten,
+    // }
+    //     const mealUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/meals/`;
+    //     const fetchConfig = {
+    //         method: "POST",
+    //         body: JSON.stringify(mealData),
+    //         headers: {
+    //             'Authorization': `Bearer ${token}`,
+    //             'Content-Type': 'application/json',
+    //         },
+    //     };
+
   const handleSeeNutrients = async (event) => {
     event.preventDefault();
-
     fetchData();
   };
 
@@ -130,27 +149,27 @@ const MealForm = () => {
 
     // This is called massaging the data to send it back to the food_items endpoint
     const newFoodItems = foodItems.map((foodItem) => {
-      return {
-        food_name: foodItem.food_name,
-        brand_name: foodItem.brand_name,
-        serving_qty: foodItem.nf_calories,
-        serving_unit: foodItem.nf_calories,
-        serving_weight_grams: foodItem.nf_calories,
-        calories: foodItem.nf_calories,
-        total_fat: foodItem.nf_calories,
-        saturated_fat: foodItem.nf_calories,
-        cholesterol: foodItem.nf_calories,
-        sodium: foodItem.nf_calories,
-        total_carbohydrate: foodItem.nf_calories,
-        dietary_fiber: foodItem.nf_calories,
-        sugars: foodItem.nf_calories,
-        protein: foodItem.nf_calories,
-        potassium: foodItem.nf_calories,
-        eaten_id: response.id,
-      };
-    });
+        return {
+            food_name: foodItem.food_name,
+            brand_name: foodItem.brand_name,
+            serving_qty: foodItem.serving_qty,
+            serving_unit: foodItem.serving_unit,
+            serving_weight_grams: foodItem.serving_weight_grams,
+            calories: foodItem.nf_calories,
+            total_fat: foodItem.nf_total_fat,
+            saturated_fat: foodItem.nf_saturated_fat,
+            cholesterol: foodItem.nf_cholesterol,
+            sodium: foodItem.nf_sodium,
+            total_carbohydrate: foodItem.nf_total_carbohydrate,
+            dietary_fiber: foodItem.nf_dietary_fiber,
+            sugars: foodItem.nf_sugars,
+            protein: foodItem.nf_protein,
+            potassium: foodItem.nf_potassium,
+            eaten_id: response.id
+        }
+    })
 
-    const foodItemUrl = `http://localhost:8000/api/food_items/${response.id}`;
+    const foodItemUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/food_items/${response.id}`;
     const foodItemFetchConfig = {
       method: "POST",
       body: JSON.stringify(newFoodItems),

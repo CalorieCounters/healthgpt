@@ -78,6 +78,25 @@ class MealQueries:
         except Exception as error:
             return {"detail": str(error)}
 
+    def get_all(self, user_id: int) -> list | HttpError:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        SELECT *
+                        FROM eaten_meals
+                        WHERE user_id = %s;
+                        """,
+                        [user_id],
+                    )
+                    eaten_meals = db.fetchall()
+                    if eaten_meals is None:
+                        return HttpError(message="You have no logged meals")
+                    return eaten_meals
+        except Exception as error:
+            return {"detail": str(error)}
+
 
 class FoodItemQueries:
     def create(self, food_items: list[FoodItem], eaten_id: int) -> list[FoodItem]:
@@ -140,7 +159,7 @@ class FoodItemQueries:
                         db.fetchall()
                     )  # this fetches from the current db.execute
                     response_data = map_fields_to_array(food_items, colnames)
-                    
+
                     return response_data
         except Exception as error:
             return {"detail": str(error)}
@@ -156,3 +175,26 @@ class FoodItemQueries:
         response = requests.post(url, headers=headers, json=query)
         food_items = response.json()["foods"]
         return food_items
+
+    def get_calories(self, eaten_id: int) -> int | HttpError:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        SELECT *
+                        FROM food_items
+                        WHERE eaten_id = %s;
+                        """,
+                        [eaten_id],
+                    )
+                    food_items = db.fetchall()
+                    if food_items is None:
+                        return HttpError(message="You have no logged meals")
+                    else:
+                        meal_calories = 0
+                        for food_item in food_items:
+                            meal_calories += food_item[6]
+                    return meal_calories
+        except Exception as error:
+            return {"detail": str(error)}

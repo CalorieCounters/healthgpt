@@ -7,19 +7,19 @@ class FoodItem(BaseModel):
     food_id: Optional[int]
     food_name: str
     brand_name: Optional[str]
-    serving_qty: float
-    serving_unit: float
-    serving_weight_grams: float
-    calories: float
-    total_fat: float
-    saturated_fat: float
-    cholesterol: float
-    sodium: float
-    total_carbohydrate: float
-    dietary_fiber: float
-    sugars: float
-    protein: float
-    potassium: float
+    serving_qty: Optional[float]
+    serving_unit: str
+    serving_weight_grams: Optional[float]
+    calories: Optional[float]
+    total_fat: Optional[float]
+    saturated_fat: Optional[float]
+    cholesterol: Optional[float]
+    sodium: Optional[float]
+    total_carbohydrate: Optional[float]
+    dietary_fiber: Optional[float]
+    sugars: Optional[float]
+    protein: Optional[float]
+    potassium: Optional[float]
     eaten_id: int
 
 
