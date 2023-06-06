@@ -77,18 +77,36 @@ class MealQueries:
         except Exception as error:
             return {"detail": str(error)}
 
-    def get_all(self, user_id: int) -> list | HttpError:
+    def get_all(self, user_id: int, show_today: bool) -> list | HttpError:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
-                    db.execute(
-                        """
+                    print("TODAYYYY", show_today)
+                    if show_today:
+                        db.execute(
+                            """
+                            SELECT *
+                            FROM eaten_meals
+                            WHERE user_id = %s AND (DATE(datetime_created) >= CURRENT_DATE AND DATE(datetime_created) < CURRENT_DATE + INTERVAL '1 DAY')
+                            """,
+                            [user_id],
+                        )
+                        eaten_meals = db.fetchall()
+
+                        if eaten_meals is None:
+                            return HttpError(
+                                message="You have no logged meals"
+                            )
+                        return eaten_meals
+                    else:
+                        db.execute(
+                            """
                         SELECT *
                         FROM eaten_meals
                         WHERE user_id = %s;
                         """,
-                        [user_id],
-                    )
+                            [user_id],
+                        )
                     eaten_meals = db.fetchall()
                     if eaten_meals is None:
                         return HttpError(message="You have no logged meals")
@@ -130,19 +148,43 @@ class FoodItemQueries:
                             [
                                 food_item.food_name,
                                 food_item.brand_name,
-                                food_item.serving_qty,
+                                food_item.serving_qty
+                                if food_item.serving_qty is not None
+                                else 0,
                                 food_item.serving_unit,
-                                food_item.serving_weight_grams,
-                                food_item.calories,
-                                food_item.total_fat,
-                                food_item.saturated_fat,
-                                food_item.cholesterol,
-                                food_item.sodium,
-                                food_item.total_carbohydrate,
-                                food_item.dietary_fiber,
-                                food_item.sugars,
-                                food_item.protein,
-                                food_item.potassium,
+                                food_item.serving_weight_grams
+                                if food_item.serving_weight_grams is not None
+                                else 0,
+                                food_item.calories
+                                if food_item.calories is not None
+                                else 0,
+                                food_item.total_fat
+                                if food_item.total_fat is not None
+                                else 0,
+                                food_item.saturated_fat
+                                if food_item.saturated_fat is not None
+                                else 0,
+                                food_item.cholesterol
+                                if food_item.cholesterol is not None
+                                else 0,
+                                food_item.sodium
+                                if food_item.sodium is not None
+                                else 0,
+                                food_item.total_carbohydrate
+                                if food_item.total_carbohydrate is not None
+                                else 0,
+                                food_item.dietary_fiber
+                                if food_item.dietary_fiber is not None
+                                else 0,
+                                food_item.sugars
+                                if food_item.sugars is not None
+                                else 0,
+                                food_item.protein
+                                if food_item.protein is not None
+                                else 0,
+                                food_item.potassium
+                                if food_item.potassium is not None
+                                else 0,
                                 eaten_id,
                             ],
                         )

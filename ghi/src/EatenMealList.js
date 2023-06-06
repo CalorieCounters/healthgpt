@@ -7,7 +7,8 @@ const EatenMealList = () => {
     const [updatedEatenMeals, setUpdatedEatenMeal] = useState([])
 
     const fetchEatenMeals = async ()=> {
-        const url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/eaten_meals`;
+        const isToday = false;
+        const url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/eaten_meals/${isToday}`;
 
         const fetchConfig = {
             headers: {
