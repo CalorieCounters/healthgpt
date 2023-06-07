@@ -17,7 +17,6 @@ def get_exercise_data(
     repo: ExerciseQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    print("ACCOUNT", account_data)
     return repo.get_exercise(query)
 
 

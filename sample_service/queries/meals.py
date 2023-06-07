@@ -81,7 +81,6 @@ class MealQueries:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
-                    print("TODAYYYY", show_today)
                     if show_today:
                         db.execute(
                             """
@@ -108,7 +107,6 @@ class MealQueries:
                             [user_id],
                         )
                     eaten_meals = db.fetchall()
-                    print(eaten_meals)
                     if eaten_meals is None:
                         return HttpError(message="You have no logged meals")
                     return eaten_meals
@@ -189,9 +187,7 @@ class FoodItemQueries:
                                 eaten_id,
                             ],
                         )
-                    # commit these changes to the DB before we can run another db.execute
                     conn.commit()
-                    # select all the food_items that were just inserted and return as a response
                     db.execute(
                         """
                         SELECT * FROM food_items WHERE eaten_id = %s;
@@ -201,7 +197,7 @@ class FoodItemQueries:
                     colnames = [desc[0] for desc in db.description]
                     food_items = (
                         db.fetchall()
-                    )  # this fetches from the current db.execute
+                    )
                     response_data = map_fields_to_array(food_items, colnames)
 
                     return response_data

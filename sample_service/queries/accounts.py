@@ -32,7 +32,6 @@ class AccountQueries:
                         ],
                     )
                     id = result.fetchone()[0]
-
                     account = AccountOut(
                         id=id,
                         first_name=account.first_name,

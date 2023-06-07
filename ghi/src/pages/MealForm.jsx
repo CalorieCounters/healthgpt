@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import Nav from "./Nav";
 import { useNavigate } from "react-router-dom";
-import "./MealForm.css";
+import "../css/MealForm.css";
 
 const MealForm = () => {
   const navigateTo = useNavigate();
@@ -16,7 +16,6 @@ const MealForm = () => {
   const [dateTimeEaten, setDateTimeEaten] = useState("");
   const [showNutrients, setShowNutrients] = useState(false);
   const [saveButton, setSaveButton] = useState(false);
-  const [refreshButton, setRefreshButton] = useState(false);
 
   const foodGroups = [
     "Zero",
@@ -62,15 +61,7 @@ const MealForm = () => {
 
   const handleSaveButtonChange = (event) => {
     setSaveButton(true);
-    console.log("test", saveButton);
   };
-
-  const handleRefreshButtonChange = (event) => {
-    setSaveButton(false);
-    setShowNutrients(false);
-  };
-
-  console.log("HEERERERERE", token);
 
   const fetchData = async () => {
     const nutrientUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/natural/nutrients`;
@@ -91,31 +82,10 @@ const MealForm = () => {
       fetchConfig
     );
 
-    console.log("DATTATA", response);
     setFoodItems(response);
     setQuery("");
     setShowNutrients(true);
   };
-
-  // const handleLog = async (event) => {
-  //     event.preventDefault();
-  //     // CREATING A MEAL, BUT WE STILL NEED TO ADD FOOD ITEMS TO THE MEAL
-  //     // TODO: Finish creating meal form with these fields
-  //     const mealData = {
-  //       description: description,
-  //       name: name,
-  //       type: type,
-  //       datetime_eaten: dateTimeEaten,
-  // }
-  //     const mealUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/meals/`;
-  //     const fetchConfig = {
-  //         method: "POST",
-  //         body: JSON.stringify(mealData),
-  //         headers: {
-  //             'Authorization': `Bearer ${token}`,
-  //             'Content-Type': 'application/json',
-  //         },
-  //     };
 
   const handleSeeNutrients = async (event) => {
     event.preventDefault();
@@ -126,8 +96,6 @@ const MealForm = () => {
     setSaveButton(false);
     setShowNutrients(false);
     event.preventDefault();
-    // CREATING A MEAL, BUT WE STILL NEED TO ADD FOOD ITEMS TO THE MEAL
-    // TODO: Finish creating meal form with these fields
 
     const mealData = {
       description: description,
@@ -152,7 +120,6 @@ const MealForm = () => {
       fetchConfig
     );
 
-    // This is called massaging the data to send it back to the food_items endpoint
     const newFoodItems = foodItems.map((foodItem) => {
       return {
         food_name: foodItem.food_name,
@@ -190,8 +157,6 @@ const MealForm = () => {
       foodItemFetchConfig
     );
     navigateTo("/meal-history");
-
-    console.log("CREATE FOOD ITEMS RESPONSE", foodItemsResponse);
   };
 
   return (
@@ -215,7 +180,6 @@ const MealForm = () => {
       <div>
         <Nav navVisible={navVisible} toggleNav={toggleNav} />
       </div>
-      {/* <div className="row"> */}
       <div
         className="row d-flex justify-content-center align-items-center"
         style={{ minHeight: "100vh" }}
@@ -354,7 +318,10 @@ const MealForm = () => {
             </div>
           )}
           {saveButton && (
-            <button onClick={handleLog} className="btn btn-success w-100">
+            <button
+              onClick={handleLog}
+              className="btn btn-success lookup-button w-100"
+            >
               Log Meal
             </button>
           )}

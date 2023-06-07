@@ -13,3 +13,7 @@
 .lookup-button:hover {
   background-color: #9294c2;
 }
+
+.navbar-toggle {
+  color: white;
+}

@@ -1,8 +1,9 @@
-/* .exercise-list {
-} */
-
 .exercise-table-container {
   height: 500px;
   width: 300%;
   overflow: auto;
+}
+
+.navbar-toggle {
+  color: white;
 }

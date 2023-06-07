@@ -30,9 +30,7 @@ class ExerciseQueries:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
-                    print("LIST", exercises)
                     for exercise in exercises:
-                        print("INSIDE FOR", exercise)
                         db.execute(
                             """
                             INSERT INTO exercise (

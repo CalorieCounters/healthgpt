@@ -8,7 +8,6 @@ client = TestClient(app)
 
 class GetMealQueries:
     def get_all(self, user_id: int, show_today: bool):
-        print("in here", show_today)
         result = [[
                 2, 'beer', 'Lunch', '2023-06-07T00:00:00',
                 '2023-06-07T15:55:42.482762', 1, 224],
@@ -36,6 +35,5 @@ def test_get_eaten_meals():
         authenticator.get_current_account_data] = fake_get_account_data
 
     response = client.get("/eaten_meals/true")
-    print(response.json())
     assert response.status_code == 200
     assert len(response.json()) == 2
