@@ -4,8 +4,8 @@ import React, { useState } from "react";
 import "./Nav.css";
 
 function Nav({ navVisible, toggleNav }) {
-  const {token, baseUrl } = useAuthContext();
-  console.log('1235234523456', token, baseUrl)
+  const { token, baseUrl } = useAuthContext();
+  console.log("1235234523456", token, baseUrl);
   const handleLinkClick = () => {
     if (navVisible) {
       toggleNav();
@@ -22,7 +22,7 @@ function Nav({ navVisible, toggleNav }) {
         </li>
         <li>
           <NavLink
-            to="/log-a-meal"
+            to="/log-meal"
             activeclassname="active"
             onClick={handleLinkClick}
           >
@@ -40,7 +40,7 @@ function Nav({ navVisible, toggleNav }) {
         </li>
         <li>
           <NavLink
-            to="/eaten-meals"
+            to="/meal-history"
             activeclassname="active"
             onClick={handleLinkClick}
           >
@@ -49,7 +49,7 @@ function Nav({ navVisible, toggleNav }) {
         </li>
         <li>
           <NavLink
-            to="/exercise-form"
+            to="/log-exercise"
             activeclassname="active"
             onClick={handleLinkClick}
           >
@@ -58,7 +58,7 @@ function Nav({ navVisible, toggleNav }) {
         </li>
         <li>
           <NavLink
-            to="/exercise-list"
+            to="/exercise-history"
             activeclassname="active"
             onClick={handleLinkClick}
           >

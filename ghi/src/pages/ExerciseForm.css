@@ -1,15 +1,15 @@
-.return-button {
+.lookup-button {
   background-color: #9b9dd0;
 }
 
-.return-button:hover {
+.lookup-button:hover {
   background-color: #9294c2;
 }
 
-.lookup-button {
+.return-button {
   background-color: #c7c4c8;
 }
 
-.lookup-button:hover {
+.return-button:hover {
   background-color: #b1adb1;
 }

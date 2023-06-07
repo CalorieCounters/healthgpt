@@ -189,7 +189,7 @@ const MealForm = () => {
       foodItemFetchConfig.headers,
       foodItemFetchConfig
     );
-    navigateTo("/eaten-meals");
+    navigateTo("/meal-history");
 
     console.log("CREATE FOOD ITEMS RESPONSE", foodItemsResponse);
   };

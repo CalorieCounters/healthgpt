@@ -23,10 +23,10 @@ function App() {
             <Route path="/signup" element={<Signup />} />
             <Route path="/login" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/log-a-meal" element={<MealForm />} />
-            <Route path="/eaten-meals" element={<EatenMealList />} />
-            <Route path="/exercise-form" element={<ExerciseForm />} />
-            <Route path="/exercise-list" element={<ExerciseList />} />
+            <Route path="/log-meal" element={<MealForm />} />
+            <Route path="/meal-history" element={<EatenMealList />} />
+            <Route path="/log-exercise" element={<ExerciseForm />} />
+            <Route path="/exercise-history" element={<ExerciseList />} />
           </Routes>
         </div>
       </AuthProvider>

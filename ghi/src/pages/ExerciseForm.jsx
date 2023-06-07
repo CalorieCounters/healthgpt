@@ -92,7 +92,7 @@ const ExerciseForm = () => {
     );
 
     console.log("HERERE RESPONSE", response);
-    navigateTo("/exercise-list");
+    navigateTo("/exercise-history");
   };
   console.log(exercises);
 
