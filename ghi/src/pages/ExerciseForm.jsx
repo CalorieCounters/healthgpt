@@ -77,7 +77,7 @@ const ExerciseForm = () => {
 
     const fetchConfig = {
       method: "POST",
-      body: JSON.stringify({ exercises: exerciseData }),
+      body: JSON.stringify(exerciseData),
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",

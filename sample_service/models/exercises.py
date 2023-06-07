@@ -29,6 +29,3 @@ class ExerciseCreateOut(BaseModel):
     message: str
     count: int
 
-
-class ExerciseCreateIn(BaseModel):
-    exercises: list[Exercise]
