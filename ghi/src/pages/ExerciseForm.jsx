@@ -1,17 +1,26 @@
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./ExerciseForm.css";
 
 const ExerciseForm = () => {
   const navigateTo = useNavigate();
   const { token, fetchWithToken } = useToken();
   const [query, setQuery] = useState("");
   const [exercises, setExercises] = useState([]);
+  const [seeExerciseButton, setSeeExerciseButton] = useState(false);
+  const [logButton, setLogButton] = useState(true);
+  const [resetButton, setResetButton] = useState(false);
 
   const handleQueryChange = (event) => {
     const value = event.target.value;
     console.log("QUERY", value);
     setQuery(value);
+  };
+
+  const handleSeeExerciseButtonChange = (event) => {
+    setSeeExerciseButton(true);
+    setLogButton(false);
   };
 
   const fetchData = async () => {
@@ -41,11 +50,16 @@ const ExerciseForm = () => {
     event.preventDefault();
 
     fetchData();
+    setSeeExerciseButton(true);
+    setLogButton(false);
   };
 
   // console.log("LOOK", exerciseData);
   const handleLog = async (event) => {
     event.preventDefault();
+
+    // setSeeExerciseButton(false);
+    // setLogButton(false);
 
     const exerciseData = [];
     for (let i = 0; i < exercises.length; i++) {
@@ -78,53 +92,84 @@ const ExerciseForm = () => {
     );
 
     console.log("HERERE RESPONSE", response);
-    navigateTo("/exercise-list");
+    navigateTo("/exercise-history");
   };
 
   return (
-    <div className="row">
-      <div className="offset-3 col-6">
+    <div
+      className="row d-flex justify-content-center align-items-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <div className="col-md-4 text-center">
         <h1 className="text-center">Log Exercise</h1>
-        <form onSubmit={handleSeeExercise} id="create-exercise-form">
-          <div className="form-floating mb-3">
-            <textarea
-              onChange={handleQueryChange}
-              placeholder="Description"
-              required
-              type="text"
-              name="Description"
-              id="Description"
-              className="form-control"
-            />
-            <label htmlFor="first_name">
-              Describe your workout for the day...
-            </label>
-          </div>
-          <button className="btn btn-primary w-100">See My Exercise</button>
+        <form
+          id="create-exercise-form"
+          style={{ maxWidth: "600px", margin: "0 auto" }}
+        >
+          {!seeExerciseButton && (
+            <div className="form-floating mb-3">
+              <textarea
+                onChange={handleQueryChange}
+                placeholder="Description"
+                required
+                type="text"
+                name="Description"
+                id="Description"
+                className="form-control"
+              />
+              <label htmlFor="first_name">
+                Describe your workout for the day...
+              </label>
+              <button
+                onClick={handleSeeExercise}
+                style={{ marginTop: "10px" }}
+                className="btn btn-secondary lookup-button w-100"
+              >
+                See My Exercise
+              </button>
+            </div>
+          )}
         </form>
-        <table>
-          <thead>
-            <tr>
-              <th>Type</th>
-              <th>Duration</th>
-              <th>Burned Calories</th>
-            </tr>
-          </thead>
-          <tbody>
-            {exercises.map((exercise, index) => {
-              return (
-                <tr key={`${exercise.name}_${index}`} value={exercise.id}>
-                  <td>{exercise.name}</td>
-                  <td>{exercise.duration_min}</td>
-                  <td>{exercise.nf_calories}</td>
+        {!logButton && (
+          <>
+            <table className="table table-striped table-bordered table-hover">
+              <thead className="thead-dark">
+                <tr>
+                  <th>Type</th>
+                  <th>Duration</th>
+                  <th>Burned Calories</th>
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
-        <button onClick={handleLog} className="btn btn-success w-100">
-          Log Exercise
-        </button>
+              </thead>
+              <tbody>
+                {exercises.map((exercise, index) => {
+                  return (
+                    <tr key={`${exercise.name}_${index}`} value={exercise.id}>
+                      <td>{exercise.name}</td>
+                      <td>{exercise.duration_min}</td>
+                      <td>{exercise.nf_calories}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <button
+              onClick={handleLog}
+              style={{ marginTop: "10px" }}
+              className="btn btn-secondary lookup-button w-100"
+            >
+              Log Exercise
+            </button>
+          </>
+        )}
+        {seeExerciseButton && (
+          <button
+            onClick={() => window.location.reload()}
+            className="btn btn-secondary return-button w-100"
+            style={{ marginTop: "10px" }}
+          >
+            Return to Exercise Lookup
+          </button>
+        )}
       </div>
     </div>
   );
