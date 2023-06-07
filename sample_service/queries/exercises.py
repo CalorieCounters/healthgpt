@@ -3,20 +3,19 @@ from db import pool
 from models.exercises import Exercise, ExerciseCreateOut, Exercises, HttpError
 import os
 import requests
-from keys import X_APP_ID, X_APP_KEY
 from .utils import map_fields_to_array
 
-
-APP_ID = os.environ.get("X_APP_ID", X_APP_ID)
-APP_KEY = os.environ.get("X_APP_KEY", X_APP_KEY)
+NUTRITIONIX_URL = os.environ["NUTRITIONIX_URL"]
+X_APP_ID = os.environ["X_APP_ID"]
+X_APP_KEY = os.environ["X_APP_KEY"]
 
 
 class ExerciseQueries:
     def get_exercise(self, query):
-        url = "https://trackapi.nutritionix.com/v2/natural/exercise"
+        url = f"{NUTRITIONIX_URL}/exercise"
         headers = {
-            "x-app-id": APP_ID,
-            "x-app-key": APP_KEY,
+            "x-app-id": X_APP_ID,
+            "x-app-key": X_APP_KEY,
             "Content-Type": "application/json",
             "x-remote-user-id": "0",
         }
