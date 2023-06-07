@@ -1,15 +1,13 @@
+from typing import Optional
 from fastapi import Depends, APIRouter
-
-# from authentication import authenticator
+from authentication import authenticator
 from queries.meals import MealQueries, FoodItemQueries
 from models.meals import (
     MealIn,
     EatenMeal,
     HttpError,
-    # FoodItemsIn,
     FoodItem,
 )
-from authentication import authenticator
 
 router = APIRouter()
 
@@ -48,3 +46,25 @@ def create_food_items(
 ):
     print("CREATE FOOD ITMES", account_data)
     return repo.create(food_items, eaten_id)
+
+
+@router.get("/eaten_meals/{show_today}", response_model=list | HttpError)
+def get_eaten_meals(
+    show_today: bool,
+    account_data: dict = Depends(authenticator.get_current_account_data),
+    repo: MealQueries = Depends(),
+):
+    print("INSIDE get all eaten meals")
+    user_id = account_data["id"]
+    print("Here IS USER ID", user_id)
+    return repo.get_all(user_id, show_today)
+
+
+@router.get("/get_meal_calories/{eaten_id}", response_model=int | HttpError)
+def get_meal_calories(
+    eaten_id: int,
+    # account_data: dict = Depends(authenticator.get_current_account_data),
+    repo: FoodItemQueries = Depends(),
+):
+    print("eaten id", eaten_id)
+    return repo.get_calories(eaten_id)

@@ -2,7 +2,6 @@ from db import pool
 from models.meals import EatenMeal, MealIn, FoodItem, HttpError
 import os
 import requests
-from models.meals import FoodItem
 from keys import X_APP_ID, X_APP_KEY
 
 
@@ -78,9 +77,49 @@ class MealQueries:
         except Exception as error:
             return {"detail": str(error)}
 
+    def get_all(self, user_id: int, show_today: bool) -> list | HttpError:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    print("TODAYYYY", show_today)
+                    if show_today:
+                        db.execute(
+                            """
+                            SELECT *
+                            FROM eaten_meals
+                            WHERE user_id = %s AND (DATE(datetime_created) >= CURRENT_DATE AND DATE(datetime_created) < CURRENT_DATE + INTERVAL '1 DAY')
+                            """,
+                            [user_id],
+                        )
+                        eaten_meals = db.fetchall()
+
+                        if eaten_meals is None:
+                            return HttpError(
+                                message="You have no logged meals"
+                            )
+                        return eaten_meals
+                    else:
+                        db.execute(
+                            """
+                        SELECT *
+                        FROM eaten_meals
+                        WHERE user_id = %s;
+                        """,
+                            [user_id],
+                        )
+                    eaten_meals = db.fetchall()
+                    print(eaten_meals)
+                    if eaten_meals is None:
+                        return HttpError(message="You have no logged meals")
+                    return eaten_meals
+        except Exception as error:
+            return {"detail": str(error)}
+
 
 class FoodItemQueries:
-    def create(self, food_items: list[FoodItem], eaten_id: int) -> list[FoodItem]:
+    def create(
+        self, food_items: list[FoodItem], eaten_id: int
+    ) -> list[FoodItem]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -110,19 +149,43 @@ class FoodItemQueries:
                             [
                                 food_item.food_name,
                                 food_item.brand_name,
-                                food_item.serving_qty,
+                                food_item.serving_qty
+                                if food_item.serving_qty is not None
+                                else 0,
                                 food_item.serving_unit,
-                                food_item.serving_weight_grams,
-                                food_item.calories,
-                                food_item.total_fat,
-                                food_item.saturated_fat,
-                                food_item.cholesterol,
-                                food_item.sodium,
-                                food_item.total_carbohydrate,
-                                food_item.dietary_fiber,
-                                food_item.sugars,
-                                food_item.protein,
-                                food_item.potassium,
+                                food_item.serving_weight_grams
+                                if food_item.serving_weight_grams is not None
+                                else 0,
+                                food_item.calories
+                                if food_item.calories is not None
+                                else 0,
+                                food_item.total_fat
+                                if food_item.total_fat is not None
+                                else 0,
+                                food_item.saturated_fat
+                                if food_item.saturated_fat is not None
+                                else 0,
+                                food_item.cholesterol
+                                if food_item.cholesterol is not None
+                                else 0,
+                                food_item.sodium
+                                if food_item.sodium is not None
+                                else 0,
+                                food_item.total_carbohydrate
+                                if food_item.total_carbohydrate is not None
+                                else 0,
+                                food_item.dietary_fiber
+                                if food_item.dietary_fiber is not None
+                                else 0,
+                                food_item.sugars
+                                if food_item.sugars is not None
+                                else 0,
+                                food_item.protein
+                                if food_item.protein is not None
+                                else 0,
+                                food_item.potassium
+                                if food_item.potassium is not None
+                                else 0,
                                 eaten_id,
                             ],
                         )
@@ -140,7 +203,7 @@ class FoodItemQueries:
                         db.fetchall()
                     )  # this fetches from the current db.execute
                     response_data = map_fields_to_array(food_items, colnames)
-                    
+
                     return response_data
         except Exception as error:
             return {"detail": str(error)}
@@ -156,3 +219,26 @@ class FoodItemQueries:
         response = requests.post(url, headers=headers, json=query)
         food_items = response.json()["foods"]
         return food_items
+
+    def get_calories(self, eaten_id: int) -> int | HttpError:
+        try:
+            with pool.connection() as conn:
+                with conn.cursor() as db:
+                    db.execute(
+                        """
+                        SELECT *
+                        FROM food_items
+                        WHERE eaten_id = %s;
+                        """,
+                        [eaten_id],
+                    )
+                    food_items = db.fetchall()
+                    if food_items is None:
+                        return HttpError(message="You have no logged meals")
+                    else:
+                        meal_calories = 0
+                        for food_item in food_items:
+                            meal_calories += food_item[6]
+                    return meal_calories
+        except Exception as error:
+            return {"detail": str(error)}

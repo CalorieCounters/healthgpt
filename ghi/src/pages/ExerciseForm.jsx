@@ -1,0 +1,178 @@
+import useToken from "@galvanize-inc/jwtdown-for-react";
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "./ExerciseForm.css";
+
+const ExerciseForm = () => {
+  const navigateTo = useNavigate();
+  const { token, fetchWithToken } = useToken();
+  const [query, setQuery] = useState("");
+  const [exercises, setExercises] = useState([]);
+  const [seeExerciseButton, setSeeExerciseButton] = useState(false);
+  const [logButton, setLogButton] = useState(true);
+  const [resetButton, setResetButton] = useState(false);
+
+  const handleQueryChange = (event) => {
+    const value = event.target.value;
+    console.log("QUERY", value);
+    setQuery(value);
+  };
+
+  const handleSeeExerciseButtonChange = (event) => {
+    setSeeExerciseButton(true);
+    setLogButton(false);
+  };
+
+  const fetchData = async () => {
+    const exerciseUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/natural/exercises`;
+
+    const fetchConfig = {
+      method: "POST",
+      body: JSON.stringify({ query: query }),
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    };
+
+    const response = await fetchWithToken(
+      exerciseUrl,
+      "POST",
+      fetchConfig.headers,
+      fetchConfig
+    );
+    console.log("RESPONSE", response);
+    setExercises(response);
+    setQuery("");
+  };
+
+  const handleSeeExercise = async (event) => {
+    event.preventDefault();
+
+    fetchData();
+    setSeeExerciseButton(true);
+    setLogButton(false);
+  };
+
+  // console.log("LOOK", exerciseData);
+  const handleLog = async (event) => {
+    event.preventDefault();
+
+    // setSeeExerciseButton(false);
+    // setLogButton(false);
+
+    const exerciseData = [];
+    for (let i = 0; i < exercises.length; i++) {
+      console.log(exercises[i]);
+      const exercise = {};
+      exercise["name_type"] = exercises[i].name;
+      exercise["duration"] = exercises[i].duration_min;
+      exercise["burned_calories"] = exercises[i].nf_calories;
+      exerciseData.push(exercise);
+    }
+
+    console.log("EXERCISES", exerciseData);
+
+    const exerciseUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/exercise`;
+
+    const fetchConfig = {
+      method: "POST",
+      body: JSON.stringify(exerciseData),
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    };
+
+    const response = await fetchWithToken(
+      exerciseUrl,
+      "POST",
+      fetchConfig.headers,
+      fetchConfig
+    );
+
+    console.log("HERERE RESPONSE", response);
+    navigateTo("/exercise-history");
+  };
+
+  return (
+    <div
+      className="row d-flex justify-content-center align-items-center"
+      style={{ minHeight: "100vh" }}
+    >
+      <div className="col-md-4 text-center">
+        <h1 className="text-center">Log Exercise</h1>
+        <form
+          id="create-exercise-form"
+          style={{ maxWidth: "600px", margin: "0 auto" }}
+        >
+          {!seeExerciseButton && (
+            <div className="form-floating mb-3">
+              <textarea
+                onChange={handleQueryChange}
+                placeholder="Description"
+                required
+                type="text"
+                name="Description"
+                id="Description"
+                className="form-control"
+              />
+              <label htmlFor="first_name">
+                Describe your workout for the day...
+              </label>
+              <button
+                onClick={handleSeeExercise}
+                style={{ marginTop: "10px" }}
+                className="btn btn-secondary lookup-button w-100"
+              >
+                See My Exercise
+              </button>
+            </div>
+          )}
+        </form>
+        {!logButton && (
+          <>
+            <table className="table table-striped table-bordered table-hover">
+              <thead className="thead-dark">
+                <tr>
+                  <th>Type</th>
+                  <th>Duration</th>
+                  <th>Burned Calories</th>
+                </tr>
+              </thead>
+              <tbody>
+                {exercises.map((exercise, index) => {
+                  return (
+                    <tr key={`${exercise.name}_${index}`} value={exercise.id}>
+                      <td>{exercise.name}</td>
+                      <td>{exercise.duration_min}</td>
+                      <td>{exercise.nf_calories}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <button
+              onClick={handleLog}
+              style={{ marginTop: "10px" }}
+              className="btn btn-secondary lookup-button w-100"
+            >
+              Log Exercise
+            </button>
+          </>
+        )}
+        {seeExerciseButton && (
+          <button
+            onClick={() => window.location.reload()}
+            className="btn btn-secondary return-button w-100"
+            style={{ marginTop: "10px" }}
+          >
+            Return to Exercise Lookup
+          </button>
+        )}
+      </div>
+    </div>
+  );
+};
+
+export default ExerciseForm;
