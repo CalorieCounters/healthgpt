@@ -3,6 +3,6 @@
 
 .exercise-table-container {
   height: 500px;
-  width: 100%;
-  overflow: scroll;
+  width: 300%;
+  overflow: auto;
 }
