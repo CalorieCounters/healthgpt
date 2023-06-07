@@ -3,7 +3,7 @@ from authentication import authenticator
 from models.exercises import (
     HttpError,
     ExerciseCreateOut,
-    ExerciseCreateIn,
+    Exercise,
 )
 from queries.exercises import ExerciseQueries
 
@@ -23,12 +23,12 @@ def get_exercise_data(
 
 @router.post("/exercise", response_model=ExerciseCreateOut | HttpError)
 def create_exercise(
-    exercise_body: ExerciseCreateIn,
+    exercises: list[Exercise],
     repo: ExerciseQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     user_id = account_data["id"]
-    return repo.create(exercise_body.exercises, user_id)
+    return repo.create(exercises, user_id)
 
 
 @router.get("/exercises", response_model=list | HttpError)
