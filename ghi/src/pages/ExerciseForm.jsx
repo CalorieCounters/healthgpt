@@ -11,18 +11,11 @@ const ExerciseForm = () => {
   const [exercises, setExercises] = useState([]);
   const [seeExerciseButton, setSeeExerciseButton] = useState(false);
   const [logButton, setLogButton] = useState(true);
-  const [resetButton, setResetButton] = useState(false);
   const [navVisible, setNavVisible] = useState(false);
 
   const handleQueryChange = (event) => {
     const value = event.target.value;
-    console.log("QUERY", value);
     setQuery(value);
-  };
-
-  const handleSeeExerciseButtonChange = (event) => {
-    setSeeExerciseButton(true);
-    setLogButton(false);
   };
 
   const fetchData = async () => {
@@ -43,7 +36,6 @@ const ExerciseForm = () => {
       fetchConfig.headers,
       fetchConfig
     );
-    console.log("RESPONSE", response);
     setExercises(response);
     setQuery("");
   };
@@ -56,24 +48,17 @@ const ExerciseForm = () => {
     setLogButton(false);
   };
 
-  // console.log("LOOK", exerciseData);
   const handleLog = async (event) => {
     event.preventDefault();
 
-    // setSeeExerciseButton(false);
-    // setLogButton(false);
-
     const exerciseData = [];
     for (let i = 0; i < exercises.length; i++) {
-      console.log(exercises[i]);
       const exercise = {};
       exercise["name_type"] = exercises[i].name;
       exercise["duration"] = exercises[i].duration_min;
       exercise["burned_calories"] = exercises[i].nf_calories;
       exerciseData.push(exercise);
     }
-
-    console.log("EXERCISES", exerciseData);
 
     const exerciseUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/exercise`;
 
@@ -93,7 +78,6 @@ const ExerciseForm = () => {
       fetchConfig
     );
 
-    console.log("HERERE RESPONSE", response);
     navigateTo("/exercise-history");
   };
 

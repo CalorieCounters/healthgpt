@@ -10,7 +10,6 @@ client = TestClient(app)
 class CreateExeriseQueries:
     def create(self, exercises, user_id):
         result = {"id": 1, "user_id": user_id}
-        print(result)
         return {"message": "Success", "count": 2}
 
 
@@ -53,7 +52,6 @@ def test_create_exercise_missing_field():
 
     input = [
         {
-            # missing name_type
             "duration": 30.2,
             "burned_calories": 302.25,
         }
@@ -76,7 +74,6 @@ def test_create_exercise_missing_field():
     }
 
 
-# needs to be mocked, cause it makes a DB connection.
 def test_create_exercise_empty_list():
     app.dependency_overrides[
         authenticator.get_current_account_data

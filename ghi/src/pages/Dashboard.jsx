@@ -3,15 +3,10 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import Nav from "./Nav";
 
 function Dashboard() {
-  // const [navVisible, setNavVisible] = useState(false);
-  // const [burnCalories, setBurnCalories] = useState("");
-  // const [consumeCalories, setConsumeCalories] = useState("");
-  // const [healthScore, setHealthScore] = useState("");
   const [eatenMeals, setEatenMeals] = useState([]);
   const { token, fetchWithToken } = useToken();
   const [navVisible, setNavVisible] = useState(false);
 
-  console.log("TOKENNNN", token);
   const addMealCalories = async (mealId) => {
     const url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/get_meal_calories/${mealId}`;
 
@@ -33,8 +28,6 @@ function Dashboard() {
   const fetchData = async () => {
     const isToday = true;
     const nutritionUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/eaten_meals/${isToday}`;
-    // const exerciseUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/exercise`;
-    // const accountUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/token`
 
     const fetchConfig = {
       headers: {
@@ -69,30 +62,13 @@ function Dashboard() {
     fetchAll();
   };
 
-  console.log("INSIDEEE", eatenMeals);
-
   useEffect(() => {
     if (token) fetchData();
-    // eslint-disable-next-line
   }, [token]);
 
   const toggleNav = () => {
     setNavVisible(!navVisible);
   };
-  // const handleBurnCaloriesChange = (event) => {
-  //   const value = event.target.value;
-  //   setBurnCalories(value);
-  // };
-
-  // const handleConsumeCaloriesChange = (event) => {
-  //   const value = event.target.value;
-  //   setConsumeCalories(value);
-  // };
-
-  // const handleHealthScoreChange = (event) => {
-  //   const value = event.target.value;
-  //   setHealthScore(value);
-  // };
 
   return (
     <div>

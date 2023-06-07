@@ -29,12 +29,10 @@ const EatenMealList = () => {
 
   useEffect(() => {
     if (token) fetchEatenMeals();
-    // eslint-disable-next-line
   }, [token]);
 
   useEffect(() => {
     if (eatenMeals.length) {
-      // Array of Promises
       const calorieFetches = eatenMeals.map((eatenMeal) => {
         return addMealCalories(eatenMeal[0]);
       });
@@ -116,7 +114,6 @@ const EatenMealList = () => {
             </thead>
             <tbody>
               {updatedEatenMeals.map((eatenMeal) => {
-                console.log(eatenMeal);
                 return (
                   <tr key={eatenMeal[0]} value={eatenMeal[0]}>
                     <td>{eatenMeal[1]}</td>

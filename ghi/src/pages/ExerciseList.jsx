@@ -8,7 +8,6 @@ const ExerciseList = () => {
   const [exercises, setExercises] = useState([]);
   const [navVisible, setNavVisible] = useState(false);
 
-  console.log("EXERCISES", exercises);
   useEffect(() => {
     const fetchExercises = async () => {
       const exerciseUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/exercises`;
@@ -31,7 +30,6 @@ const ExerciseList = () => {
     };
 
     if (token) fetchExercises();
-    // eslint-disable-next-line
   }, [token]);
 
   const toggleNav = () => {
