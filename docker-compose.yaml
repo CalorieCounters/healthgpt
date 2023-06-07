@@ -11,6 +11,9 @@ services:
       dockerfile: Dockerfile.dev
     environment:
       SIGNING_KEY: ${SIGNING_KEY}
+      NUTRITIONIX_URL: ${NUTRITIONIX_URL}
+      X_APP_ID: ${X_APP_ID}
+      X_APP_KEY: ${X_APP_KEY}
       DATABASE_URL: postgresql://healthgpt:healthgpt@postgres/healthgpt
       WAIT_HOSTS: postgres:5432
     ports:

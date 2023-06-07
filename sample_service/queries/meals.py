@@ -2,23 +2,11 @@ from db import pool
 from models.meals import EatenMeal, MealIn, FoodItem, HttpError
 import os
 import requests
-from keys import X_APP_ID, X_APP_KEY
+from .utils import map_fields_to_array
 
-
-APP_ID = os.environ.get("X_APP_ID", X_APP_ID)
-APP_KEY = os.environ.get("X_APP_KEY", X_APP_KEY)
-
-
-def map_fields_to_array(items, cols):
-    response_data = []
-    for item in items:
-        data = {}
-        for i, col in enumerate(cols):
-            data[col] = item[i]
-
-        response_data.append(data)
-
-    return response_data
+NUTRITIONIX_URL = os.environ["NUTRITIONIX_URL"]
+X_APP_ID = os.environ["X_APP_ID"]
+X_APP_KEY = os.environ["X_APP_KEY"]
 
 
 class MealQueries:
@@ -86,7 +74,10 @@ class MealQueries:
                             """
                             SELECT *
                             FROM eaten_meals
-                            WHERE user_id = %s AND (DATE(datetime_created) >= CURRENT_DATE AND DATE(datetime_created) < CURRENT_DATE + INTERVAL '1 DAY')
+                            WHERE user_id = %s
+                            AND (DATE(datetime_created) >= CURRENT_DATE
+                            AND DATE(datetime_created)
+                            < CURRENT_DATE + INTERVAL '1 DAY')
                             """,
                             [user_id],
                         )
@@ -142,7 +133,8 @@ class FoodItemQueries:
                                 potassium,
                                 eaten_id
                             )
-                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
+                            VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s,
+                            %s, %s, %s, %s, %s, %s)
                             """,
                             [
                                 food_item.food_name,
@@ -205,10 +197,10 @@ class FoodItemQueries:
             return {"detail": str(error)}
 
     def get_food_items(self, query):
-        url = "https://trackapi.nutritionix.com/v2/natural/nutrients"
+        url = f"{NUTRITIONIX_URL}/nutrients"
         headers = {
-            "x-app-id": APP_ID,
-            "x-app-key": APP_KEY,
+            "x-app-id": X_APP_ID,
+            "x-app-key": X_APP_KEY,
             "Content-Type": "application/json",
             "x-remote-user-id": "0",
         }
