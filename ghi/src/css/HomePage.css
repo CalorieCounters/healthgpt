@@ -1,11 +1,31 @@
+@import url("https://fonts.googleapis.com/css2?family=Playfair:wght@700&display=swap");
+
 body {
   height: 100px;
   background-color: #96a7cf;
   background-image: linear-gradient(to left, #96a7cf, #e3efe8);
 }
 
+.log-up-button {
+  background-color: #9b9dd0;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+}
+
+.log-up-button:hover {
+  background-color: #9294c2;
+  padding: 10px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  color: white;
+}
+
 button {
-  background-color: lightgray;
+  background-color: #9294c2;
   padding: 10px;
   border: none;
   border-radius: 4px;
@@ -20,6 +40,7 @@ p {
   padding-right: 350px;
   padding-top: 10px;
   text-align: center;
+  font-family: "Playfair", sans-serif;
 }
 
 .navbar {
@@ -67,8 +88,6 @@ p {
   padding-top: 100px;
 }
 
-
-
 .p_and_img {
   padding-top: 200px;
 }
@@ -82,20 +101,20 @@ p {
   align-self: center;
 }
 
-.accordion-item{
-  background-color: #E4F5FF;
+.accordion-item {
+  background-color: #e4f5ff;
   max-width: 600px;
-  margin: 0 auto
+  margin: 0 auto;
 }
 
 .accordion-button {
-  background-color: #9294C2;
+  background-color: #9294c2;
   color: white;
 }
 
 .accordion-button:not(.collapsed),
 .accordion-button:not(.collapsed):focus {
-    background-color: #9294C2;
+  background-color: #9294c2;
 }
 
 .exercise {
@@ -106,4 +125,8 @@ p {
   /* justify-content: center; */
   /* align-items: center; */
   /* height: 100vh; */
+}
+
+.navbar-toggle {
+  color: white;
 }

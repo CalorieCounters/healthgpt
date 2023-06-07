@@ -1,16 +1,16 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
+import Login from "./Login";
+import Signup from "./Signup";
 import Nav from "./Nav";
 
-import "./App.css";
-import MealForm from "./MealForm.js";
+import "../css/App.css";
+import MealForm from "./MealForm.jsx";
 import HomePage from "./HomePage";
 import Dashboard from "./Dashboard";
-import EatenMealList from "./EatenMealList";
-import ExerciseForm from "./pages/ExerciseForm";
-import ExerciseList from "./pages/ExerciseList";
+import EatenMealList from "./EatenMealList.jsx";
+import ExerciseForm from "./ExerciseForm";
+import ExerciseList from "./ExerciseList";
 
 function App() {
   return (

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import Nav from "./Nav";
 import { useNavigate } from "react-router-dom";
-import "./MealForm.css";
+import "../css/MealForm.css";
 
 const MealForm = () => {
   const navigateTo = useNavigate();
@@ -354,7 +354,10 @@ const MealForm = () => {
             </div>
           )}
           {saveButton && (
-            <button onClick={handleLog} className="btn btn-success w-100">
+            <button
+              onClick={handleLog}
+              className="btn btn-success lookup-button w-100"
+            >
               Log Meal
             </button>
           )}

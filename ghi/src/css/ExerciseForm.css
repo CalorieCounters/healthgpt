@@ -13,3 +13,7 @@
 .return-button:hover {
   background-color: #b1adb1;
 }
+
+.navbar-toggle {
+  color: white;
+}

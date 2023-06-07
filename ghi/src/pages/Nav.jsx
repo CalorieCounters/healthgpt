@@ -1,7 +1,7 @@
 import { useAuthContext } from "@galvanize-inc/jwtdown-for-react";
 import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
-import "./Nav.css";
+import "../css/Nav.css";
 
 function Nav({ navVisible, toggleNav }) {
   const { token, baseUrl } = useAuthContext();
