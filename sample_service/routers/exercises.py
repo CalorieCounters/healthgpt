@@ -1,8 +1,11 @@
 from fastapi import APIRouter, Depends
 from authentication import authenticator
-from models.exercises import HttpError, Exercise, ExerciseCreateOut
+from models.exercises import (
+    HttpError,
+    ExerciseCreateOut,
+    ExerciseCreateIn,
+)
 from queries.exercises import ExerciseQueries
-from fastapi.encoders import jsonable_encoder
 
 
 router = APIRouter()
@@ -20,13 +23,12 @@ def get_exercise_data(
 
 @router.post("/exercise", response_model=ExerciseCreateOut | HttpError)
 def create_exercise(
-    exercise: list[Exercise],
+    exercise_body: ExerciseCreateIn,
     repo: ExerciseQueries = Depends(),
     account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     user_id = account_data["id"]
-    print("ROUTER CREATE", exercise)
-    return repo.create(exercise, user_id)
+    return repo.create(exercise_body.exercises, user_id)
 
 
 @router.get("/exercises", response_model=list | HttpError)

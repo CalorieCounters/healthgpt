@@ -108,6 +108,7 @@ class MealQueries:
                             [user_id],
                         )
                     eaten_meals = db.fetchall()
+                    print(eaten_meals)
                     if eaten_meals is None:
                         return HttpError(message="You have no logged meals")
                     return eaten_meals

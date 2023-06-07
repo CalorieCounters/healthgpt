@@ -77,7 +77,7 @@ const ExerciseForm = () => {
 
     const fetchConfig = {
       method: "POST",
-      body: JSON.stringify(exerciseData),
+      body: JSON.stringify({ exercises: exerciseData }),
       headers: {
         Authorization: `Bearer ${token}`,
         "Content-Type": "application/json",
@@ -94,7 +94,6 @@ const ExerciseForm = () => {
     console.log("HERERE RESPONSE", response);
     navigateTo("/exercise-history");
   };
-  console.log(exercises);
 
   return (
     <div
