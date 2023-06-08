@@ -1,103 +1,50 @@
 5/8/2023
-Brainstormed project ideas. Decided to create a project based on health, in more detail tracking nutriotional intake and daily calorie calculation.
+Brainstormed project ideas and decided to create a project based on health. More specifically, we aim to track nutritional intake and calculate daily calories.
+
+5/9/2023
+Decided to use the Nutrionix third-party API because it not only provides endpoints for nutrition data but also allows users to input their intake in natural language. Progressed in structuring how our project will handle data with the third-party API.
 
 5/12/2023
-Finalized software architechture of front end and started discussion of how we should structure our data tables.
+Finalized the software architecture of the front end and started discussing how we should structure our data tables.
 
 5/15/2023
-Decided what database we are going to use. Were in between PostgreSQL and MongoDB. Also discussed what we should personally study to have smoother development process.
+Decided on the database to use, considering PostgreSQL and MongoDB. Also discussed what we should personally study to have a smoother development process.
 
 5/17/2023
-We understood there was a confusion when we were designing our models, and clarified there is a difference in pydantic model and database table.
+Realized there was confusion when designing our models and clarified the difference between Pydantic models and database tables.
 
-May 15th
+5/20/2023
+Explored the inputs and outputs of the third-party API in depth. Created the first migration table in PgAdmin.
 
-- Decided which database to use
-  Today we looked over our wireframe and considered the structure we imagine our models will take.
-  Based on this we decided to use PostgreSQL for our database. We considered MongoDB as well, but
-  there didn't seem to be a necessity to go a non-relational route.
-  May 17th
-- Started thinking about models
-  Once we decided on PostgreSQL as our database, we started to outline our models, considering
-  what we want to be included and the way in which the models would relate to each other. We downloaded
-  PGAdmin and connected it to our server.
-  May 19th
-- Finalized the structure of our models
-  Using our third party API as a reference, we went over the nutritional values that it would
-  return and chose which items we wanted to display in our app. We then made our migration
-  tables on PGAdmin.
-  May 22nd
-- Started creating feature branches
-  Now that we have our models squared away for the time being, we started to think about
-  how we would begin working on the different features of our app. We made branches for the features
-  we're going to work on first and started looking into how to get the backend set up for them.
-  May 23rd
-- Started working on backend
-  After deciding on a workflow for the initial features, we started to put together the router
-  and query functions. We started with accounts, working on the router and query functions. We
-  created an account using PGAdmin so that we had some data for the get account functionality.
-  May 24th
-- Get account function complete
-  We finished the get account functionality and pushed it to gitlab. We then moved on to the
-  create account functionality. We are having a decently tough time with this functionality as
-  it is our first time working with the authentication token. We were lost as to what to try
-  next at times.
-  May 26th
-- Create account functionality
-  We've been struggling for a few days now on the token authentication. We had SEIR help today
-  but they were unable to rectify our issues. We plan to ask for instructor assistance after the
-  holiday weekend.
-  May 30th
-- Finished create account functionality
-  With some clutch assistance from an instructor, we were able to get our create account
-  functionality where it needs to be to move forward. We committed and pushed these changes
-  to Gitlab. We now have backend functionality for login, logout, get account and create
-  account.
-  May 31st
-- Moving on to meal functionality
-  Now that we have account functionality, we moved onto our meal functions. We started the days
-  by cleaning up some of our account code. Then we started to tackle the meal functionality.
-  June 1st
-- Completed backend meal functionality
-  Create and get meal backend functionality is complete. We committed and pushed to Gitlab.
-  We're now ready to move onto the front end of our appliation. The first thing we decided
-  to work on was our Log a Meal form. This will be the most code intensive of any of our
-  features so it seemed like a good place to start. We also realize our keys.py file is
-  not being displayed in a best practice sort of way.
-  Jun 2nd
-- Log a meal front end functionality complete
-  We worked into the evening last night and our front end Log a Meal form is complete. We
-  need to touch up some aspects of the page still, but the general functionality is working.
-  We also started work on some of the front end design aspects. We're implementing a
-  collapsible nav bar and are working to implement that the way we would prefer it to
-  look. Additionally we hid our keys.py file.
-  June 5th
-- Front end authentication
-  The past few days have seen some breakthroughs for our group and we have moved on to
-  shaping the other aspects of our front end. Now that we have log a meal functionality
-  we were able to complete our meal history table. As we start finishing up front end features
-  we needed to finalize our front end authentication. We were initially having trouble having
-  our token follow the account to other pages once logged in. Today we finalized that aspect.
-  June 6th
-- Moving on to food items
-  With much of the front end functionality complete, we moved on to a different aspect of our
-  nutrional tracking, which is storing individual food items. This took some thought as we
-  needed the food items to be created and stored in the database using the same api call
-  that contains our meal details. We also needed to track the nutrional content of each
-  individual food item. With some work arounds regarding the varying nutrtional content each
-  food item contains, we were able to get this working.
-  June 7th
-- Exercise pages and unit tests
-  With all things related to our nutrtional content squared away, we moved on to something
-  that was initially considered a stretch goal, exercise functionality. It took roughly one
-  full day but working into the evening last night we were able to finalize this aspect. We then
-  spent the first half of today working on our unit tests. It was slow going at first, but as
-  we completed one and then the next one we got better and better. By lunch today we had completed
-  all of our unit tests.
-  June 8th
-- Dashboard page and styling finishing touches
-  As we near the completion of our project, we had only one page remaining to display on
-  the front end, the user dashboard. In additon to this, we put the finishing touches on the
-  styling of the application and prepared to work on deployment.
+5/22/2023
+Discussed the features to include and defined our Minimum Buyable Product (MBP). We concluded that the exercise aspect of the project would be a stretch goal, and we would focus on allowing users to log what they eat.
 
-  I LIKE MEN - Alex Winter freaking Lee
+5/23/2023
+Worked on the query and router for the account. Since authentication is required, we identified the account as the first model we should tackle.
+
+5/24/2023
+After trial and error, we were able to figure out the GET account, but the POST account was not progressing as well as we had hoped. We delved deep into understanding FastAPI for a better grasp of the data flow. Authentication was a separate concept that we started to tackle but couldn't fully understand through the documentation alone.
+
+5/25/2023
+Authentication continued to hinder our progress, so we sought assistance from SEIRs.
+
+5/30/2023
+With the help of the instructor, we were able to achieve a fully functioning account POST.
+
+6/1/2023
+Wrapped up the meal router and query. Since we had the account router and query figured out, the development process became smoother. Integrating the third-party API was a great learning experience. We also took note of our keys.py file, which contained our API keys but was displaying on GitLab once committed.
+
+6/2/2023
+Started to heavily work on the front end. One of the most important features, logging a meal, was completed. We also began discussing the design aspect.
+
+6/5/2023
+Completed front end authentication, although we still found it to be one of the more challenging steps. On the other hand, most of the front end functionality was done. We split up the group to tackle multiple tasks simultaneously, experiencing different styles of development.
+
+6/6/2023
+Needed to define the remaining tasks for the project as the due date was approaching. We were glad that the backend work for exercise was completed, but the front end still required some final touches. Also, finalized the design theme of our webpage and discovered many useful sites for designing. Personally, I find the front end very enjoyable!
+
+6/7/2023
+Wrapped up the homepage and worked on the logos. Encountered some issues with certain React components, but debugging them was significantly easier than dealing with backend issues. We worked individually at this point to tackle a couple of minor tasks more efficiently, as we aimed to have minimal tasks left for the remaining days.
+
+6/8/2023
+The last two major tasks were completing the dashboard page and deployment. The skeleton of the dashboard page has been finished, and now it's a matter of how much time we have and whether we want to display more information or not. None of us felt comfortable with deployment at the moment, so we needed to study that aspect individually.
