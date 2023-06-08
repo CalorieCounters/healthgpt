@@ -35,14 +35,12 @@ function Dashboard() {
         "Content-Type": "application/json",
       },
     };
-    // this gets the meals for today
     const eatenMealsResponse = await fetchWithToken(
       nutritionUrl,
       "GET",
       fetchConfig.headers,
       fetchConfig
     );
-    // maps over eatenMeals reponse and creates an array of promises
     const calorieFetches = eatenMealsResponse.map((eatenMeal) => {
       return addMealCalories(eatenMeal[0]);
     });

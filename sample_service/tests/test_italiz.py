@@ -74,23 +74,6 @@ def test_create_exercise_missing_field():
     }
 
 
-# needs to be mocked, cause it makes a DB connection.
-# def test_create_exercise_empty_list():
-#     app.dependency_overrides[
-#         authenticator.get_current_account_data
-#     ] = fake_get_current_account_data
-
-#     input = []
-
-#     response = client.post(
-#         "/exercise",
-#         json=input,
-#     )
-
-#     assert response.status_code == 200
-#     assert response.json() == {"message": "Success", "count": 0}
-
-
 def test_exercise_map_fields():
     mapped = map_fields_to_array(
         [["running", 30, 300]], ["name_type", "duration", "burned_calories"]
