@@ -1,11 +1,12 @@
 # Module3 Project Gamma
 
-## Getting started
+## Overview
 
-You have a project repository, now what? The next section
-lists all of the deliverables that are due at the end of the
-week. Below is some guidance for getting started on the
-tasks for this week.
+Juno Lee
+Jason Rhein
+Italiz Vazquez
+Christian Tegene
+Alex Winterlee
 
 ## Install Extensions
 
@@ -14,102 +15,43 @@ tasks for this week.
 
 ## Deliverables
 
-- [ ] Wire-frame diagrams
-- [ ] API documentation
-- [ ] Project is deployed to Caprover (BE, DB) & GitLab-pages (FE)
-- [ ] GitLab issue board is setup and in use (or project management tool of choice)
-- [ ] Journals
+- Wire-frame diagrams:
+  https://ita835417.invisionapp.com/freehand/Project-Gamma-tHdPyE9bK
 
-## Project layout
+- API documentation:
+  https://docs.google.com/document/d/1_q-K-ObMTZvO0qUEAxROrN3bwMujwAN25sLHwJzliK0/edit#heading=h.73n49tgew66c
 
-The layout of the project is just like all of the projects
-you did with `docker-compose` in module #2. You will create
-a directory in the root of the repository for each service
-that you add to your project just like those previous
-projects were setup.
+## Intended Market
 
-### Directories
+The HealthGPT target audience is not restricted to a specific demographic. Anyone interested in tracking their nutritional intake and caloric calculation can utilize our natural language based product!
 
-Several directories have been added to your project. The
-directories `docs` and `journals` are places for you and
-your team-mates to, respectively, put any documentation
-about your project that you create and to put your
-project-journal entries. See the _README.md_ file in each
-directory for more info.
+## Functionality
 
-The other directories, `ghi` and `sample_service`, are
-sample services, that you can start building off of or use
-as a reference point.
+Users of the site are met with a stylish homepage, offering them the opportunity
+to either log in or create an account if they don't already have one. Once they sign up or log in they are transported to to the Dashboard, the center of the user's nutrional rundown. This area shows the user details of their nutrional intake and exerise output, allowing them to easily keep track of their progress. If the user decides to click on the navigation bar, disguiesed as a button labeled "Menu", they are once again treated to the view of a fully functioning navigation bar, complete with quick links to each aspect of our site. From this navigation menu, the user can access every piece of the site, seemlesly transitioning from logging their meals, viewing the meals they've eaten, logging their exercise for the day, and viewing said exercise.
 
-Inside of `ghi` is a minimal React app that has an "under
-construction" page. It is setup similarly to all of the
-other React projects that you have worked on.
+These features alone are beneficial for the user to have access to, and HealthGPT combines them all for a seamless user experience.
 
-Inside of `sample_service` is a minimal FastAPI application.
-"Where are all the files?" you might ask? Well, the
-`main.py` file is the whole thing, and go take look inside
-of it... There's not even much in there..., hmm? That is
-FastAPI, we'll learn more about it in the coming days. Can
-you figure out what this little web-application does even
-though you haven't learned about FastAPI yet?
+The "Log Meal" page allows the user to input their consumption for any given meal, snack, or desert, using a natural language input system. NutritionIX API accepts their input and provides a nutrtional breakdown for both individual food items and aggregate meals.
 
-Also in `sample_service` is a directory for your migrations.
-If you choose to use PostgreSQL, then you'll want to use
-migrations to control your database. Unlike Django, where
-migrations were automatically created for you, you'll write
-yours by hand using DDL. Don't worry about not knowing what
-DDL means; we have you covered. There's a sample migration
-in there that creates two tables so you can see what they
-look like.
+The "Eaten Meals" page takes the user's input and stores them in a table, giving the user a way to view their consumption with ease.
 
-The sample Dockerfile and Dockerfile.dev run your migrations
-for you automatically.
+The "Log Exercise" page behaves identically to the "Log Meal" page, using NutrionIX's natural language input systyem to give the user a breakdown of each exercise they perform.
 
-### Other files
+The "My Exercises" page is a twin to the "Eaten Meals" page, allowing the user to easily see the breakdown of each exercise they've done.
 
-The following project files have been created as a minimal
-starting point. Please follow the guidance for each one for
-a most successful project.
+## Project Initialization
 
-- `docker-compose.yaml`: there isn't much in here, just a
-  **really** simple UI and FastAPI service. Add services
-  (like a database) to this file as you did with previous
-  projects in module #2.
-- `.gitlab-ci.yml`: This is your "ci/cd" file where you will
-  configure automated unit tests, code quality checks, and
-  the building and deployment of your production system.
-  Currently, all it does is deploy an "under construction"
-  page to your production UI on GitLab and a sample backend
-  to CapRover. We will learn much more about this file.
-- `.gitignore`: This is a file that prevents unwanted files
-  from getting added to your repository, files like
-  `pyc` files, `__pycache__`, etc. We've set it up so that
-  it has a good default configuration for Python projects.
-- `.env.sample`: This file is a template to copy when
-  creating environment variables for your team. Create a
-  copy called `.env` and put your own passwords in here
-  without fear of it being committed to git (see `.env`
-  listed in `.gitignore`). You can also put team related
-  environment variables in here, things like api and signing
-  keys that shouldn't be committed; these should be
-  duplicated in your deployed environments.
+To test this application on your local machine, please follow these steps:
 
-## How to complete the initial deploy
-
-There will be further guidance on completing the initial
-deployment, but it just consists of these steps:
-
-### Setup GitLab repo/project
-
-- make sure this project is in a group. If it isn't, stop
-  now and move it to a GitLab group
-- remove the fork relationship: In GitLab go to:
-
-  Settings -> General -> Advanced -> Remove fork relationship
-
-- add these GitLab CI/CD variables:
-  - PUBLIC_URL : this is your gitlab pages URL
-  - SAMPLE_SERVICE_API_HOST: enter "blank" for now
+1. Clone the repository down to your local machine
+2. CD into the new project directory
+3. Run docker volum to create sample_service
+4. Run docker compose build
+5. Run docker compose up
+6. Run docker exec -it module3-project-gamma-fastapi-1 bash
+7. Run python manage.py
+8. Exit the container's CLI and enjoy HealthGPT!
 
 #### Your GitLab pages URL
 
@@ -140,3 +82,16 @@ in GitLab.
 Merge a change into main to kick off the initial deploy. Once the build pipeline
 finishes you should be able to see an "under construction" page on your GitLab
 pages site.
+
+## Project Initialization
+
+To test this application on your local machine, please follow these steps:
+
+1. Clone the repository down to your local machine
+2. CD into the new project directory
+3. Run docker volum to create sample_service
+4. Run docker compose build
+5. Run docker compose up
+6. Run docker exec -it module3-project-gamma-fastapi-1 bash
+7. Run python manage.py
+8. Exit the container's CLI and enjoy HealthGPT!

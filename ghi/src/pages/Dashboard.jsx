@@ -35,14 +35,12 @@ function Dashboard() {
         "Content-Type": "application/json",
       },
     };
-    // this gets the meals for today
     const eatenMealsResponse = await fetchWithToken(
       nutritionUrl,
       "GET",
       fetchConfig.headers,
       fetchConfig
     );
-    // maps over eatenMeals reponse and creates an array of promises
     const calorieFetches = eatenMealsResponse.map((eatenMeal) => {
       return addMealCalories(eatenMeal[0]);
     });
@@ -89,7 +87,9 @@ function Dashboard() {
         ></div>
       )}
       <Nav navVisible={navVisible} toggleNav={toggleNav} />
-      <h1>Hold my beer new shit be comin!</h1>
+      <h1>D A S H B O A R D</h1>
+      <h2>C O M I N G</h2>
+      <h3>S O O N</h3>
     </div>
   );
 }

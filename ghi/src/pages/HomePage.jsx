@@ -6,29 +6,8 @@ import { Link } from "react-router-dom";
 function HomePage() {
   const [navVisible, setNavVisible] = useState(false);
 
-  const toggleNav = () => {
-    setNavVisible(!navVisible);
-  };
-
   return (
     <div>
-      {!navVisible && (
-        <button
-          className="navbar-toggle"
-          onClick={toggleNav}
-          style={{ position: "absolute", top: "10px", left: "10px" }}
-        >
-          Menu
-        </button>
-      )}
-      {navVisible && (
-        <div
-          className="overlay"
-          onClick={toggleNav}
-          style={{ position: "fixed", top: 0, bottom: 0, left: 0, right: 0 }}
-        ></div>
-      )}
-      <Nav navVisible={navVisible} toggleNav={toggleNav} />
       <div className="p_and_img">
         <img
           src="healthgpt.png"
