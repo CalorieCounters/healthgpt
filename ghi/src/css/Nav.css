@@ -1,9 +1,14 @@
 .navbar {
   display: flex;
-  flex-direction: center;
-  align-items: center;
-  background-color: #9294c2;
+  align-items: flex-start;
+  background-color: rgb(146, 149, 100);
   padding: 10px;
+  width: 9%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
 }
 
 .navbar.visible {
@@ -16,12 +21,13 @@
 
 .navbar ul {
   list-style: none;
-  padding: 0;
+  padding-top: 10%;
   margin: 0;
 }
 
 .navbar li {
   margin-bottom: 5px;
+  margin-top: 15%;
 }
 
 .navbar a {
@@ -33,6 +39,19 @@
   font-weight: bold;
 }
 
-.navbar-toggle {
-  color: white;
+.navbar .sub-links {
+  display: block;
+  padding-left: 20px;
+}
+
+.navbar h4 {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  text-decoration: underline;
+  padding-top: 10%;
+}
+
+.navbar i {
+  display: inline;
 }
