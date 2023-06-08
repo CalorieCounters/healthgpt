@@ -30,7 +30,7 @@ function Signup() {
 
     register(accountData, url);
 
-    navigateTo("/login");
+    navigateTo("/dashboard");
   };
 
   const handleFormChange = (e) => {
