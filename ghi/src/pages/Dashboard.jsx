@@ -1,9 +1,15 @@
 import React, { useEffect, useState } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
+import Chart from "chart.js/auto";
 import Nav from "./Nav";
 
 function Dashboard() {
   const [eatenMeals, setEatenMeals] = useState([]);
+  const [mealTypes, setMealTypes] = useState([]);
+  const [calories, setCalories] = useState({
+    burned: 0,
+    eaten: 0,
+  });
   const { token, fetchWithToken } = useToken();
   const [navVisible, setNavVisible] = useState(false);
 
@@ -22,10 +28,11 @@ function Dashboard() {
       fetchConfig.headers,
       fetchConfig
     );
+    console.log("CALORIES", response);
     return response;
   };
 
-  const fetchData = async () => {
+  const fetchEatenMealsData = async () => {
     const isToday = true;
     const nutritionUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/eaten_meals/${isToday}`;
 
@@ -55,18 +62,155 @@ function Dashboard() {
       });
 
       setEatenMeals(updatedEatenMeals);
+
+      const mealTypeCalories = updatedEatenMeals.reduce(
+        (result, innerArray) => {
+          const mealType = innerArray[2];
+          const calories = innerArray[innerArray.length - 1];
+
+          if (!result[mealType]) {
+            result[mealType] = 0;
+          }
+
+          result[mealType] += calories;
+          return result;
+        },
+        {}
+      );
+
+      setMealTypes(mealTypeCalories);
+
+      const eatenCalories = updatedEatenMeals.reduce((result, innerArray) => {
+        const calories = innerArray[innerArray.length - 1];
+
+        result += calories;
+        return result;
+      }, 0);
+
+      setCalories((previousCalories) => ({
+        ...previousCalories,
+        eaten: eatenCalories,
+      }));
     };
 
     fetchAll();
   };
 
+  const fetchExerciseData = async () => {
+    const exerciseUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/exercises`;
+
+    const fetchConfig = {
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
+    };
+
+    const response = await fetchWithToken(
+      exerciseUrl,
+      "GET",
+      fetchConfig.headers,
+      fetchConfig
+    );
+
+    const filtered = response.filter((exercise) => {
+      const exerciseDate = new Date(exercise.datetime_created);
+      const today = new Date();
+
+      const fullExerciseDate = `${
+        exerciseDate.getMonth() + 1
+      }-${exerciseDate.getDate()}-${exerciseDate.getFullYear()}`;
+
+      const fullTodayDate = `${
+        today.getMonth() + 1
+      }-${today.getDate()}-${today.getFullYear()}`;
+
+      return fullExerciseDate === fullTodayDate;
+    });
+
+    const burnedCalories = filtered.reduce((result, exercise) => {
+      const burned = exercise.est_burned_calories;
+      result += burned;
+      return result;
+    }, 0);
+
+    setCalories((previousCalories) => ({
+      ...previousCalories,
+      burned: burnedCalories,
+    }));
+  };
+
   useEffect(() => {
-    if (token) fetchData();
+    if (token) fetchEatenMealsData() && fetchExerciseData();
+    // eslint-disable-next-line
   }, [token]);
 
   const toggleNav = () => {
     setNavVisible(!navVisible);
   };
+
+  useEffect(() => {
+    let chart;
+    if (eatenMeals.length > 0) {
+      chart = new Chart(document.getElementById("eatenCaloriesCharts"), {
+        type: "bar",
+        options: {
+          animation: false,
+          plugins: {
+            legend: {
+              display: false,
+            },
+            tooltip: {
+              enabled: false,
+            },
+          },
+        },
+        data: {
+          labels: Object.keys(mealTypes),
+          datasets: [
+            {
+              label: "Meal Type",
+              data: Object.values(mealTypes),
+            },
+          ],
+        },
+      });
+    }
+    return () => {
+      chart?.destroy();
+    };
+    // eslint-disable-next-line
+  }, [eatenMeals.length]);
+
+  useEffect(() => {
+    let chart;
+    if (eatenMeals.length > 0) {
+      chart = new Chart(document.getElementById("burnedCaloriesCharts"), {
+        type: "pie",
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: "top",
+            },
+          },
+        },
+        data: {
+          labels: Object.keys(calories),
+          datasets: [
+            {
+              label: "Meal Type",
+              data: Object.values(calories),
+            },
+          ],
+        },
+      });
+    }
+    return () => {
+      chart?.destroy();
+    };
+    // eslint-disable-next-line
+  }, [eatenMeals.length]);
 
   return (
     <div>
@@ -87,9 +231,18 @@ function Dashboard() {
         ></div>
       )}
       <Nav navVisible={navVisible} toggleNav={toggleNav} />
-      <h1>D A S H B O A R D</h1>
-      <h2>C O M I N G</h2>
-      <h3>S O O N</h3>
+      <div>
+        <h1>Dashboard</h1>
+      </div>
+      <div>
+        <h2>Calories by Meal Types</h2>
+      </div>
+      <div>
+        <canvas id="eatenCaloriesCharts" />
+      </div>
+      <div>
+        <canvas id="burnedCaloriesCharts" />
+      </div>
     </div>
   );
 }
