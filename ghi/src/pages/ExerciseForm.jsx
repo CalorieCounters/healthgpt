@@ -71,12 +71,12 @@ const ExerciseForm = () => {
       },
     };
 
-    // const response = await fetchWithToken(
-    //   exerciseUrl,
-    //   "POST",
-    //   fetchConfig.headers,
-    //   fetchConfig
-    // );
+    await fetchWithToken(
+      exerciseUrl,
+      "POST",
+      fetchConfig.headers,
+      fetchConfig
+    );
 
     navigateTo("/exercise-history");
   };
