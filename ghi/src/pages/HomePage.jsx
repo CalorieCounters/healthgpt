@@ -1,10 +1,8 @@
 import "../css/HomePage.css";
 import React, { useState } from "react";
-import Nav from "./Nav";
 import { Link } from "react-router-dom";
 
 function HomePage() {
-  const [navVisible, setNavVisible] = useState(false);
 
   return (
     <div>
@@ -12,6 +10,7 @@ function HomePage() {
         <img
           src="healthgpt.png"
           style={{ display: "block", margin: "0 auto" }}
+          alt="healthgpt logo"
         />
         <p>
           Our mission is to empower individuals to take control of their health
@@ -64,7 +63,7 @@ function HomePage() {
               data-bs-parent="#faqAccordion"
             >
               <div className="accordion-body flex-container">
-                <img className="flex-item" src="nutrition.webp" />
+                <img className="flex-item" src="nutrition.webp" alt="healthy food" />
                 <div className="flex-item">
                   Using our meal submission form, easily track your nutritional
                   intake. HealthGPT will log your meals along with all the
@@ -93,7 +92,7 @@ function HomePage() {
               data-bs-parent="#faqAccordion"
             >
               <div className="accordion-body flex-container">
-                <img className="flex-item exercise" src="exercise2.png" />
+                <img className="flex-item exercise" src="exercise2.png" alt="workouts" />
                 <div className="flex-item ">
                   Using our exercise submission form, track your workouts and
                   the calories you burn in the process.
@@ -121,7 +120,7 @@ function HomePage() {
               data-bs-parent="#faqAccordion"
             >
               <div className="accordion-body flex-container">
-                <img className="flex-item exercise" src="pi.png" />
+                <img className="flex-item exercise" src="pi.png" alt="health wheel"/>
                 <div className="flex-item">
                   HealthGPT will use your meal and workout submissions to give
                   you a birds eye view of your health in real time.

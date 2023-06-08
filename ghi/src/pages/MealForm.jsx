@@ -150,12 +150,12 @@ const MealForm = () => {
         "Content-Type": "application/json",
       },
     };
-    const foodItemsResponse = await fetchWithToken(
-      foodItemUrl,
-      "POST",
-      foodItemFetchConfig.headers,
-      foodItemFetchConfig
-    );
+    // const foodItemsResponse = await fetchWithToken(
+    //   foodItemUrl,
+    //   "POST",
+    //   foodItemFetchConfig.headers,
+    //   foodItemFetchConfig
+    // );
     navigateTo("/meal-history");
   };
 

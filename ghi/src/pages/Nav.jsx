@@ -1,10 +1,10 @@
 import { NavLink } from "react-router-dom";
-import React, { useState } from "react";
+import React from "react";
 import "../css/Nav.css";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function Nav({ navVisible, toggleNav }) {
-  const { logout, token } = useToken();
+  const { logout } = useToken();
   const handleLinkClick = () => {
     if (navVisible) {
       toggleNav();
@@ -24,7 +24,7 @@ function Nav({ navVisible, toggleNav }) {
               <i>General</i>
             </u>
           </h4>
-          <ul class="sub-links">
+          <ul className="sub-links">
             <li>
               <NavLink
                 to="/"
@@ -56,7 +56,7 @@ function Nav({ navVisible, toggleNav }) {
               <i>Nutrition</i>
             </u>
           </h4>
-          <ul class="sub-links">
+          <ul className="sub-links">
             <li>
               <NavLink
                 to="/log-meal"
@@ -83,7 +83,7 @@ function Nav({ navVisible, toggleNav }) {
               <i>Fitness</i>
             </u>
           </h4>
-          <ul class="sub-links">
+          <ul className="sub-links">
             <li>
               <NavLink
                 to="/log-exercise"
