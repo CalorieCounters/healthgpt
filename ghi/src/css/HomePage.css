@@ -36,8 +36,10 @@ p {
   color: black;
   font-size: 20px;
   line-height: 1.5;
-  padding-left: 350px;
-  padding-right: 350px;
+  /* padding-left: 45%; */
+  /* padding-right: 350px; */
+  max-width: 30%;
+  margin-left: 35%;
   padding-top: 10px;
   text-align: center;
   font-family: "Playfair", sans-serif;
