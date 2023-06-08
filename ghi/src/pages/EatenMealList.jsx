@@ -29,6 +29,7 @@ const EatenMealList = () => {
 
   useEffect(() => {
     if (token) fetchEatenMeals();
+    // eslint-disable-next-line
   }, [token]);
 
   useEffect(() => {
@@ -51,6 +52,7 @@ const EatenMealList = () => {
 
       fetchAll();
     }
+    // eslint-disable-next-line
   }, [eatenMeals, token]);
 
   const addMealCalories = async (mealId) => {

@@ -30,6 +30,7 @@ const ExerciseList = () => {
     };
 
     if (token) fetchExercises();
+    // eslint-disable-next-line
   }, [token]);
 
   const toggleNav = () => {
