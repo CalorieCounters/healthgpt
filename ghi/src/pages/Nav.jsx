@@ -1,12 +1,18 @@
 import { NavLink } from "react-router-dom";
 import React, { useState } from "react";
 import "../css/Nav.css";
+import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function Nav({ navVisible, toggleNav }) {
+  const { logout, token } = useToken();
   const handleLinkClick = () => {
     if (navVisible) {
       toggleNav();
     }
+  };
+
+  const handleLogout = (event) => {
+    logout();
   };
 
   return (
@@ -19,20 +25,20 @@ function Nav({ navVisible, toggleNav }) {
         </li>
         <li>
           <NavLink
-            to="/log-meal"
-            activeclassname="active"
-            onClick={handleLinkClick}
-          >
-            Log a meal
-          </NavLink>
-        </li>
-        <li>
-          <NavLink
             to="/dashboard"
             activeclassname="active"
             onClick={handleLinkClick}
           >
             Dashboard
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/log-meal"
+            activeclassname="active"
+            onClick={handleLinkClick}
+          >
+            Log a meal
           </NavLink>
         </li>
         <li>
@@ -60,6 +66,11 @@ function Nav({ navVisible, toggleNav }) {
             onClick={handleLinkClick}
           >
             My Exercises
+          </NavLink>
+        </li>
+        <li>
+          <NavLink to="/" activeclassname="active" onClick={handleLogout}>
+            Logout
           </NavLink>
         </li>
       </ul>
