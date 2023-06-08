@@ -9,7 +9,6 @@ client = TestClient(app)
 
 class CreateExeriseQueries:
     def create(self, exercises, user_id):
-        result = {"id": 1, "user_id": user_id}
         return {"message": "Success", "count": 2}
 
 

@@ -1,7 +1,7 @@
 stages:
   - test
   - build
-  # - deploy
+  - deploy
 
 # Run flake8 to check for code quality
 lint-test-job:
