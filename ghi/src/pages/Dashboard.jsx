@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import Chart from "chart.js/auto";
 import Nav from "./Nav";
+import "../css/Dashboard.css";
 
 function Dashboard() {
   const [eatenMeals, setEatenMeals] = useState([]);
@@ -231,17 +232,19 @@ function Dashboard() {
         ></div>
       )}
       <Nav navVisible={navVisible} toggleNav={toggleNav} />
-      <div>
+      <div className="words">
         <h1>Dashboard</h1>
       </div>
-      <div>
+      <div className="words">
         <h2>Calories by Meal Types</h2>
       </div>
-      <div>
-        <canvas id="eatenCaloriesCharts" />
-      </div>
-      <div>
-        <canvas id="burnedCaloriesCharts" />
+      <div className="chart-container">
+        <div className="chart">
+          <canvas id="eatenCaloriesCharts" className="small-chart" />
+        </div>
+        <div className="chart">
+          <canvas id="burnedCaloriesCharts" className="small-chart" />
+        </div>
       </div>
     </div>
   );

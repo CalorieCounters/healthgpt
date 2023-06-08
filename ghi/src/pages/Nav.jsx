@@ -24,7 +24,7 @@ function Nav({ navVisible, toggleNav }) {
               <i>General</i>
             </u>
           </h4>
-          <ul class="sub-links">
+          <ul className="sub-links">
             <li>
               <NavLink
                 to="/"

@@ -1,0 +1,20 @@
+.chart-container {
+  display: flex;
+}
+
+.chart {
+  width: 30%;
+  padding: 10px;
+  margin-left: 13%;
+}
+
+.small-chart {
+  width: 50%;
+  height: 50%;
+}
+
+.words {
+  margin-top: 3%;
+  margin-left: 45%;
+  margin-bottom: 2%;
+}
