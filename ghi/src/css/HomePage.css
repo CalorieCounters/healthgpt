@@ -1,5 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Playfair:wght@700&display=swap");
 
+
+.header {
+  background-image: url("/public/header1.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  height:120px;
+  align-items: center;
+  display: flex;
+  text-align: center;
+  justify-content: center;
+}
+
 body {
   height: 100px;
   background-color: #96a7cf;
@@ -32,9 +45,9 @@ button {
   cursor: pointer;
 }
 
-p {
+.mission {
   color: black;
-  font-size: 20px;
+  font-size: 30px;
   line-height: 1.5;
   max-width: 30%;
   margin-left: 35%;
@@ -125,4 +138,16 @@ p {
 
 .navbar-toggle {
   color: white;
+}
+
+h1 {
+  font-size: 28px;
+}
+
+.disclaimer {
+  font-size: 18px;
+  text-align: center;
+}
+footer {
+  font-size: 15px;
 }

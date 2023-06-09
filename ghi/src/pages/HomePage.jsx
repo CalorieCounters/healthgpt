@@ -6,13 +6,15 @@ function HomePage() {
 
   return (
     <div>
+      <header className="header">
+      </header>
       <div className="p_and_img">
         <img
-          src="healthgpt.png"
+          src="healthgpt2.png"
           style={{ display: "block", margin: "0 auto" }}
           alt="healthgpt logo"
         />
-        <p>
+        <p className="mission">
           Our mission is to empower individuals to take control of their health
           and wellness by providing personalized solutions that help them
           achieve their goals.
@@ -53,7 +55,7 @@ function HomePage() {
                 aria-expanded="false"
                 aria-controls="faqCollapse1"
               >
-                Track your consumption
+                Track Consumptions
               </button>
             </h2>
             <div
@@ -82,7 +84,7 @@ function HomePage() {
                 aria-expanded="false"
                 aria-controls="faqCollapse2"
               >
-                Track your workouts
+                Track Workouts
               </button>
             </h2>
             <div
@@ -110,7 +112,7 @@ function HomePage() {
                 aria-expanded="false"
                 aria-controls="faqCollapse3"
               >
-                Be your best self
+                Be your Best self
               </button>
             </h2>
             <div
@@ -130,7 +132,11 @@ function HomePage() {
           </div>
         </div>
       </div>
+      <footer className="disclaimer">
+          <p >Powered by <a href="https://www.nutritionix.com/">Nutritionix</a></p>
+      </footer>
     </div>
+
   );
 }
 

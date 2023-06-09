@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import Chart from "chart.js/auto";
 import Nav from "./Nav";
+import "../css/Dashboard.css";
 
 function Dashboard() {
   const [eatenMeals, setEatenMeals] = useState([]);
@@ -171,6 +172,12 @@ function Dashboard() {
             {
               label: "Meal Type",
               data: Object.values(mealTypes),
+              backgroundColor: [
+                "#9294C2",
+                "#9181B2",
+                "#916E9F",
+                "#915A89",
+                "#8E4670"]
             },
           ],
         },
@@ -201,6 +208,9 @@ function Dashboard() {
             {
               label: "Meal Type",
               data: Object.values(calories),
+              backgroundColor: [
+                "#6DBFE8",
+                "#916E9F", ]
             },
           ],
         },
@@ -237,12 +247,15 @@ function Dashboard() {
       <div>
         <h2>Calories by Meal Types</h2>
       </div>
-      <div>
-        <canvas id="eatenCaloriesCharts" />
+      <div className="chart-container">
+        <div className="chart-item">
+          <canvas id="eatenCaloriesCharts" />
+        </div>
+        <div className="chart-item">
+          <canvas id="burnedCaloriesCharts" />
+        </div>
       </div>
-      <div>
-        <canvas id="burnedCaloriesCharts" />
-      </div>
+
     </div>
   );
 }
