@@ -10,6 +10,11 @@ app.include_router(accounts.router)
 app.include_router(meals.router)
 app.include_router(exercises.router)
 
+origins = [
+    "http://localhost:3000",
+    os.environ.get("CORS_HOST", None),
+]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[
@@ -19,16 +24,3 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
-
-@app.get("/api/launch-details")
-def launch_details():
-    return {
-        "launch_details": {
-            "module": 3,
-            "week": 17,
-            "day": 5,
-            "hour": 19,
-            "min": "00"
-        }
-    }
