@@ -2,8 +2,9 @@ import "../css/HomePage.css";
 import React from "react";
 import { Link } from "react-router-dom";
 
-function HomePage() {
+//TODO: Add Error Handling
 
+function HomePage() {
   return (
     <div>
       <header className="header">

@@ -4,6 +4,8 @@ import Chart from "chart.js/auto";
 import Nav from "./Nav";
 import "../css/Dashboard.css";
 
+//TODO: Add Error Handling
+
 function Dashboard() {
   const [eatenMeals, setEatenMeals] = useState([]);
   const [mealTypes, setMealTypes] = useState([]);
@@ -29,7 +31,6 @@ function Dashboard() {
       fetchConfig.headers,
       fetchConfig
     );
-    console.log("CALORIES", response);
     return response;
   };
 

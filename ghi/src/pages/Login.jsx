@@ -1,7 +1,9 @@
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 // TODO: Add error handling
+
 function Login() {
   const navigateTo = useNavigate();
   const [username, setUsername] = useState('')

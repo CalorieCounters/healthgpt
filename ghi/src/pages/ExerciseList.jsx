@@ -3,6 +3,8 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 import "../css/ExerciseList.css";
 import Nav from "./Nav";
 
+//TODO: Add Error Handling
+
 const ExerciseList = () => {
   const { token, fetchWithToken } = useToken();
   const [exercises, setExercises] = useState([]);
