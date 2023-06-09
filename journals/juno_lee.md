@@ -48,3 +48,7 @@ Wrapped up the homepage and worked on the logos. Encountered some issues with ce
 
 6/8/2023
 The last two major tasks were completing the dashboard page and deployment. The skeleton of the dashboard page has been finished, and now it's a matter of how much time we have and whether we want to display more information or not. None of us felt comfortable with deployment at the moment, so we needed to study that aspect individually.
+
+6/9/2023
+Actually had some time to play around with the styling last night, and With the help of peers we were able to successfully finish the deployment process.
+There was a quota issue for deploying, which is why the deployment wasn't successful.
