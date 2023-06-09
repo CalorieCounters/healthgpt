@@ -4,17 +4,17 @@ WORKDIR /app
 
 # Copy the top-level files in your service's directory
 # Modify these instructions to do that
-COPY requirements.txt /app/requirements.txt
-COPY main.py /app/main.py
-COPY db.py /app/db.py
-COPY authentication.py /app/authentication.py
+COPY requirements.txt requirements.txt
+COPY main.py main.py
+COPY db.py db.py
+COPY authentication.py authentication.py
 
 
 # Copy all of the subdirectories in your service's directory
 # Modify these instructions to do that
-COPY queries /app/queries
-COPY routers /app/routers
-COPY models /app/models
+COPY queries queries
+COPY routers routers
+COPY models models
 
 
 RUN python -m pip install -r requirements.txt
@@ -28,4 +28,4 @@ RUN python -m pip install -r requirements.txt
 # uncomment the following COPY and CMD lines
 COPY migrations migrations
 # # !! PORT env var needs to match with exposed port in caprover dashboard
-CMD python -m migrations up && uvicorn main:app --host 0.0.0.0 --port $PORT
+CMD python -m migrations up && uvicorn main:app --host 0.0.0.0 --port 80
