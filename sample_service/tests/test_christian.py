@@ -4,7 +4,6 @@ from queries.meals import MealQueries
 from models.meals import MealIn, EatenMeal
 from authentication import authenticator
 from datetime import date
-# import json
 from fastapi.encoders import jsonable_encoder
 
 client = TestClient(app)
@@ -36,7 +35,6 @@ def test_create_meal():
         type="breakfast",
         datetime_eaten=date.today(),
         )
-    # dump = json.dumps(input.dict(), indent=4, sort_keys=True, default=str)
     json_compatible_item_data = jsonable_encoder(input)
     expected_output = jsonable_encoder(EatenMeal(
         id=1000,

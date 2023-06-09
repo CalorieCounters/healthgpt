@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import Nav from "./Nav";
 
+//TODO: Add Error Handling
+
 const EatenMealList = () => {
   const { token, fetchWithToken } = useToken();
   const [eatenMeals, setEatenMeals] = useState([]);

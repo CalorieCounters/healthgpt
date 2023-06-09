@@ -3,6 +3,8 @@ import React from "react";
 import "../css/Nav.css";
 import useToken from "@galvanize-inc/jwtdown-for-react";
 
+//TODO: Add Error Handling
+
 function Nav({ navVisible, toggleNav }) {
   const { logout } = useToken();
   const handleLinkClick = () => {

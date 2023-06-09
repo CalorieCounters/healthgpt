@@ -1,7 +1,9 @@
 import useToken from "@galvanize-inc/jwtdown-for-react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 // TODO: Add error handling
+
 function Signup() {
   const { register } = useToken();
   const navigateTo = useNavigate();

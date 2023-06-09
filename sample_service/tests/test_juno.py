@@ -8,7 +8,6 @@ client = TestClient(app)
 
 class GetMealQueries:
     def get_all(self, user_id: int, show_today: bool):
-        print("in here", show_today)
         result = [
             [
                 2,

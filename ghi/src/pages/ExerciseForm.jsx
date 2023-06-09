@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 import "../css/ExerciseForm.css";
 import Nav from "./Nav";
 
+//TODO: Add Error Handling
+
 const ExerciseForm = () => {
   const navigateTo = useNavigate();
   const { token, fetchWithToken } = useToken();
