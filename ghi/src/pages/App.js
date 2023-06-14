@@ -13,10 +13,9 @@ import ExerciseForm from "./ExerciseForm";
 import ExerciseList from "./ExerciseList";
 
 function App() {
-  const domain = /https:\/\/[^/]+/;
-  const basename = process.env.PUBLIC_URL.replace(domain, '');
+  console.log("PROCESS ENV", process.env);
   return (
-    <BrowserRouter basename={basename}>
+    <BrowserRouter>
       <AuthProvider baseUrl={process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}>
         <Nav />
         <div>

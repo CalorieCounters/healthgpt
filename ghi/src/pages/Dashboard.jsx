@@ -143,7 +143,12 @@ function Dashboard() {
   };
 
   useEffect(() => {
-    if (token) fetchEatenMealsData() && fetchExerciseData();
+    if (token) {
+      (async () => {
+        await fetchEatenMealsData();
+        await fetchExerciseData();
+      })();
+    }
     // eslint-disable-next-line
   }, [token]);
 
@@ -178,7 +183,8 @@ function Dashboard() {
                 "#9181B2",
                 "#916E9F",
                 "#915A89",
-                "#8E4670"]
+                "#8E4670",
+              ],
             },
           ],
         },
@@ -209,9 +215,7 @@ function Dashboard() {
             {
               label: "Meal Type",
               data: Object.values(calories),
-              backgroundColor: [
-                "#6DBFE8",
-                "#916E9F", ]
+              backgroundColor: ["#6DBFE8", "#916E9F"],
             },
           ],
         },
@@ -256,7 +260,6 @@ function Dashboard() {
           <canvas id="burnedCaloriesCharts" />
         </div>
       </div>
-
     </div>
   );
 }
