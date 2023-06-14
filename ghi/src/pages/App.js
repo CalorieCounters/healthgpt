@@ -13,7 +13,7 @@ import ExerciseForm from "./ExerciseForm";
 import ExerciseList from "./ExerciseList";
 
 function App() {
-  const domain = /https:\/\/[^/]+/;
+  // const domain = /https:\/\/[^/]+/;
   // const basename = process.env.PUBLIC_URL.replace(domain, '');
   //basename={basename}
   return (
