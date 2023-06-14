@@ -13,7 +13,7 @@ lint-test-job:
   script:
     - pip install flake8
     - flake8 sample_service
-  when: manual
+  # when: manual
 
 # Link Frontend test job
 lint-frontend-test-job:
@@ -24,7 +24,7 @@ lint-frontend-test-job:
     - npm install
     - cd src
     - npx eslint .
-  when: manual
+  # when: manual
 
 # Run the unit tests
 api-unit-tests-job:
@@ -43,7 +43,7 @@ api-unit-tests-job:
     NUTRITIONIX_URL: NUTRITIONIX_URL
     X_APP_ID: X_APP_ID
     X_APP_KEY: X_APP_KEY
-  when: manual
+  # when: manual
 
 # # Build the React/JavaScript front-end
 build-front-end-job:
