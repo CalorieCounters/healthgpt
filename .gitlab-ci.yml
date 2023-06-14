@@ -13,6 +13,7 @@ lint-test-job:
   script:
     - pip install flake8
     - flake8 sample_service
+  when: manual
 
 # Link Frontend test job
 lint-frontend-test-job:
@@ -23,6 +24,7 @@ lint-frontend-test-job:
     - npm install
     - cd src
     - npx eslint .
+  when: manual
 
 # Run the unit tests
 api-unit-tests-job:
@@ -41,6 +43,7 @@ api-unit-tests-job:
     NUTRITIONIX_URL: NUTRITIONIX_URL
     X_APP_ID: X_APP_ID
     X_APP_KEY: X_APP_KEY
+  when: manual
 
 # # Build the React/JavaScript front-end
 build-front-end-job:
@@ -53,7 +56,7 @@ build-front-end-job:
     # CI/CD variables, that value will override the value here.
     # You need to substitute in your real values for
     # GROUP_NAME, PROJECT_NAME, & WEBSERVICE_NAME below.
-    PUBLIC_URL: https://christiantegene.gitlab.io/module3-project-gamma
+    PUBLIC_URL: https://caloriecounters.gitlab.io/module3-project-gamma
     REACT_APP_SAMPLE_SERVICE_API_HOST: https://healthgpt.feb-a-7.mod3projects.com
     # REACT_APP_SAMPLE_SERVICE_API_HOST: https://feb-23-et-13-healthgpt.mod3projects.com
   script:
@@ -65,7 +68,7 @@ build-front-end-job:
     paths:
       - ghi/build/
 
-# # Deploy the React/JavaScript front-end to GitLab pages
+# Deploy the React/JavaScript front-end to GitLab pages
 pages:
   stage: deploy
   rules:
