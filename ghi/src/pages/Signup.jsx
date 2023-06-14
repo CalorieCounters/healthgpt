@@ -20,7 +20,7 @@ function Signup() {
   const handleRegistration = async (e) => {
     e.preventDefault();
 
-    const url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/accounts/`;
+    const url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/accounts`;
     const accountData = {
       first_name: formData.firstName,
       last_name: formData.lastName,

@@ -105,7 +105,7 @@ const MealForm = () => {
       type: type,
       datetime_eaten: dateTimeEaten,
     };
-    const mealUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/meals/`;
+    const mealUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/meals`;
     const fetchConfig = {
       method: "POST",
       body: JSON.stringify(mealData),
