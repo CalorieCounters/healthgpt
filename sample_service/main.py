@@ -12,6 +12,7 @@ app.include_router(exercises.router)
 
 origins = [
     "http://localhost:3000",
+    "https://caloriecounters.gitlab.io",
     os.environ.get("CORS_HOST", None),
 ]
 
