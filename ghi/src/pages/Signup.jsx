@@ -21,7 +21,6 @@ function Signup() {
     e.preventDefault();
 
     const url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/accounts`;
-    console.log("URL FOR REGISTER", url);
     const accountData = {
       first_name: formData.firstName,
       last_name: formData.lastName,

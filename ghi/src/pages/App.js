@@ -13,7 +13,6 @@ import ExerciseForm from "./ExerciseForm";
 import ExerciseList from "./ExerciseList";
 
 function App() {
-  console.log("PROCESS ENV", process.env);
   return (
     <BrowserRouter>
       <AuthProvider baseUrl={process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}>

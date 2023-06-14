@@ -7,7 +7,6 @@ import useToken from "@galvanize-inc/jwtdown-for-react";
 
 function Nav({ navVisible, toggleNav }) {
   const { logout, token } = useToken();
-  console.log("TOKEN", token);
   const handleLinkClick = () => {
     if (navVisible) {
       toggleNav();
