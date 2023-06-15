@@ -12,6 +12,8 @@ app.include_router(exercises.router)
 
 origins = [
     "http://localhost:3000",
+    "https://healthgpt-production.up.railway.app",
+    "https://healthgpt-frontend-production.up.railway.app",
     "https://caloriecounters.gitlab.io",
     "https://christiantegene.gitlab.io",
     os.environ.get("CORS_HOST", None),
