@@ -1,6 +1,6 @@
 from fastapi.testclient import TestClient
 from main import app
-from authentication import authenticator
+# from authentication import authenticator
 from queries.meals import FoodItemQueries
 
 client = TestClient(app)

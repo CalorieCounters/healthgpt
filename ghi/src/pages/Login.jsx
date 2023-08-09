@@ -1,29 +1,36 @@
-import useToken from "@galvanize-inc/jwtdown-for-react";
+// import useToken from "@galvanize-inc/jwtdown-for-react";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // TODO: Add error handling
 
 function Login() {
-  const navigateTo = useNavigate();
-  const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
-  const { login, token } = useToken()
+  // const navigateTo = useNavigate();
+  // const [username, setUsername] = useState('')
+  // const [password, setPassword] = useState('')
+  // // const { login, token } = useToken()
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
 
-    login(username, password)
+  //   // login(username, password)
+  //   const login = async () => {
+  //     const accountURL = `http://localhost:8000/api/accounts${username}`
 
-    e.target.reset();
-  }
+  //     const fetchConfig = {
+  //       method: "get"
+  //     }
+  //   }
 
-    useEffect(() => {
-      if (token) navigateTo('/dashboard')
-  }, [token, navigateTo]);
+  //   e.target.reset();
+  // }
+
+  //   useEffect(() => {
+  //     navigateTo('/dashboard')
+  // }, [navigateTo]);
   return (
     <div className="container" style={{ maxWidth: "400px", margin: "0 auto" }}>
-      <h1 className="mt-5">LOGIN</h1>
+      {/* <h1 className="mt-5">LOGIN</h1>
       <div>
         <form onSubmit={handleSubmit}>
           <label className="form-label">Username:</label>
@@ -44,7 +51,8 @@ function Login() {
             <button className="btn btn-primary">Login</button>
           </div>
         </form>
-      </div>
+      </div> */}
+      <h1>LOGIN</h1>
     </div>
   );
 }

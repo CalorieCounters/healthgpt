@@ -1,11 +1,11 @@
-import useToken from "@galvanize-inc/jwtdown-for-react";
+// import useToken from "@galvanize-inc/jwtdown-for-react";
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 // TODO: Add error handling
 
 function Signup() {
-  const { register } = useToken();
+  // const { register } = useToken();
   const navigateTo = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -20,7 +20,7 @@ function Signup() {
   const handleRegistration = async (e) => {
     e.preventDefault();
 
-    const url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/accounts`;
+    const url = `http://localhost:8000/api/accounts`;
     const accountData = {
       first_name: formData.firstName,
       last_name: formData.lastName,
@@ -30,9 +30,21 @@ function Signup() {
       gender: formData.gender,
     };
 
-    register(accountData, url);
+    // register(accountData, url);
+    const fetchConfig = {
+      method: "POST",
+      body: JSON.stringify(accountData),
+      headers: {
+        "Content-Type": "application/json",
+      }
+    }
 
-    navigateTo("/dashboard");
+    const response = await fetch(url, fetchConfig)
+
+    if (response.ok) {
+      console.log("DOES IT WORK", "yes")
+      navigateTo("/dashboard");
+    }
   };
 
   const handleFormChange = (e) => {

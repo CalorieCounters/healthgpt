@@ -1,12 +1,12 @@
 import { NavLink } from "react-router-dom";
 import React from "react";
 import "../css/Nav.css";
-import useToken from "@galvanize-inc/jwtdown-for-react";
+// import useToken from "@galvanize-inc/jwtdown-for-react";
 
 //TODO: Add Error Handling
 
 function Nav({ navVisible, toggleNav }) {
-  const { logout } = useToken();
+  // const { logout } = useToken();
   const handleLinkClick = () => {
     if (navVisible) {
       toggleNav();
@@ -14,7 +14,7 @@ function Nav({ navVisible, toggleNav }) {
   };
 
   const handleLogout = (event) => {
-    logout();
+    // logout();
   };
 
   return (

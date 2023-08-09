@@ -1,87 +1,87 @@
 import React, { useState, useEffect } from "react";
-import useToken from "@galvanize-inc/jwtdown-for-react";
+// import useToken from "@galvanize-inc/jwtdown-for-react";
 import Nav from "./Nav";
 
 //TODO: Add Error Handling
 
 const EatenMealList = () => {
-  const { token, fetchWithToken } = useToken();
-  const [eatenMeals, setEatenMeals] = useState([]);
-  const [updatedEatenMeals, setUpdatedEatenMeal] = useState([]);
-  const [navVisible, setNavVisible] = useState(false);
+  // const { token, fetchWithToken } = useToken();
+  // const [eatenMeals, setEatenMeals] = useState([]);
+  // const [updatedEatenMeals, setUpdatedEatenMeal] = useState([]);
+  // const [navVisible, setNavVisible] = useState(false);
 
-  const fetchEatenMeals = async () => {
-    const isToday = false;
-    const url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/eaten_meals/${isToday}`;
+  // const fetchEatenMeals = async () => {
+  //   const isToday = false;
+  //   const url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/eaten_meals/${isToday}`;
 
-    const fetchConfig = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
-    const response = await fetchWithToken(
-      url,
-      "GET",
-      fetchConfig.headers,
-      fetchConfig
-    );
-    setEatenMeals(response);
-  };
+  //   const fetchConfig = {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //   };
+  //   const response = await fetchWithToken(
+  //     url,
+  //     "GET",
+  //     fetchConfig.headers,
+  //     fetchConfig
+  //   );
+  //   setEatenMeals(response);
+  // };
 
-  useEffect(() => {
-    if (token) fetchEatenMeals();
-    // eslint-disable-next-line
-  }, [token]);
+  // useEffect(() => {
+  //   if (token) fetchEatenMeals();
+  //   // eslint-disable-next-line
+  // }, [token]);
 
-  useEffect(() => {
-    if (eatenMeals.length) {
-      const calorieFetches = eatenMeals.map((eatenMeal) => {
-        return addMealCalories(eatenMeal[0]);
-      });
+  // useEffect(() => {
+  //   if (eatenMeals.length) {
+  //     const calorieFetches = eatenMeals.map((eatenMeal) => {
+  //       return addMealCalories(eatenMeal[0]);
+  //     });
 
-      const fetchAll = async () => {
-        const arrayOfCalories = await Promise.all(calorieFetches);
+  //     const fetchAll = async () => {
+  //       const arrayOfCalories = await Promise.all(calorieFetches);
 
-        const updatedEatenMeals = eatenMeals.map((eatenMeal, i) => {
-          const calorie = arrayOfCalories[i];
+  //       const updatedEatenMeals = eatenMeals.map((eatenMeal, i) => {
+  //         const calorie = arrayOfCalories[i];
 
-          return [...eatenMeal, calorie];
-        });
+  //         return [...eatenMeal, calorie];
+  //       });
 
-        setUpdatedEatenMeal(updatedEatenMeals);
-      };
+  //       setUpdatedEatenMeal(updatedEatenMeals);
+  //     };
 
-      fetchAll();
-    }
-    // eslint-disable-next-line
-  }, [eatenMeals, token]);
+  //     fetchAll();
+  //   }
+  //   // eslint-disable-next-line
+  // }, [eatenMeals, token]);
 
-  const addMealCalories = async (mealId) => {
-    const url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/get_meal_calories/${mealId}`;
+  // const addMealCalories = async (mealId) => {
+  //   const url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/get_meal_calories/${mealId}`;
 
-    const fetchConfig = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
-    const response = await fetchWithToken(
-      url,
-      "GET",
-      fetchConfig.headers,
-      fetchConfig
-    );
-    return response;
-  };
+  //   const fetchConfig = {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //   };
+  //   const response = await fetchWithToken(
+  //     url,
+  //     "GET",
+  //     fetchConfig.headers,
+  //     fetchConfig
+  //   );
+  //   return response;
+  // };
 
-  const toggleNav = () => {
-    setNavVisible(!navVisible);
-  };
+  // const toggleNav = () => {
+  //   setNavVisible(!navVisible);
+  // };
 
   return (
     <div>
-      {!navVisible && (
+      {/* {!navVisible && (
         <button
           className="navbar-toggle"
           onClick={toggleNav}
@@ -130,7 +130,8 @@ const EatenMealList = () => {
             </tbody>
           </table>
         </div>
-      </div>
+      </div> */}
+      <h1>EATEN MEAL LIST</h1>
     </div>
   );
 };

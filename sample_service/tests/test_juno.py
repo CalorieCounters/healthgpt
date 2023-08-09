@@ -1,7 +1,7 @@
 from fastapi.testclient import TestClient
 from main import app
 from queries.meals import MealQueries
-from authentication import authenticator
+# from authentication import authenticator
 
 client = TestClient(app)
 

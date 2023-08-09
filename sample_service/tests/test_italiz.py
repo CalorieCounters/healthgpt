@@ -1,7 +1,7 @@
 from queries.exercises import ExerciseQueries
 from queries.utils import map_fields_to_array
 from fastapi.testclient import TestClient
-from authentication import authenticator
+# from authentication import authenticator
 from main import app
 
 client = TestClient(app)

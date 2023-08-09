@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useToken from "@galvanize-inc/jwtdown-for-react";
+// import useToken from "@galvanize-inc/jwtdown-for-react";
 import Nav from "./Nav";
 import { useNavigate } from "react-router-dom";
 import "../css/MealForm.css";
@@ -7,163 +7,163 @@ import "../css/MealForm.css";
 //TODO: Add Error Handling
 
 const MealForm = () => {
-  const navigateTo = useNavigate();
-  const { token, fetchWithToken } = useToken();
-  const [query, setQuery] = useState("");
-  const [foodItems, setFoodItems] = useState([]);
-  const [navVisible, setNavVisible] = useState(false);
-  const [description, setDescription] = useState("");
-  const [name, setName] = useState("");
-  const [type, setType] = useState("");
-  const [dateTimeEaten, setDateTimeEaten] = useState("");
-  const [showNutrients, setShowNutrients] = useState(false);
-  const [saveButton, setSaveButton] = useState(false);
+  // const navigateTo = useNavigate();
+  // const { token, fetchWithToken } = useToken();
+  // const [query, setQuery] = useState("");
+  // const [foodItems, setFoodItems] = useState([]);
+  // const [navVisible, setNavVisible] = useState(false);
+  // const [description, setDescription] = useState("");
+  // const [name, setName] = useState("");
+  // const [type, setType] = useState("");
+  // const [dateTimeEaten, setDateTimeEaten] = useState("");
+  // const [showNutrients, setShowNutrients] = useState(false);
+  // const [saveButton, setSaveButton] = useState(false);
 
-  const foodGroups = [
-    "Zero",
-    "Dairy",
-    "Protein",
-    "Fruit",
-    "Vegetable",
-    "Grain",
-    "Fat",
-    "Legume",
-    "Combination",
-    "N/A",
-  ];
+  // const foodGroups = [
+  //   "Zero",
+  //   "Dairy",
+  //   "Protein",
+  //   "Fruit",
+  //   "Vegetable",
+  //   "Grain",
+  //   "Fat",
+  //   "Legume",
+  //   "Combination",
+  //   "N/A",
+  // ];
 
-  const handleQueryChange = (event) => {
-    const value = event.target.value;
-    setQuery(value);
-  };
+  // const handleQueryChange = (event) => {
+  //   const value = event.target.value;
+  //   setQuery(value);
+  // };
 
-  const toggleNav = () => {
-    setNavVisible(!navVisible);
-  };
+  // const toggleNav = () => {
+  //   setNavVisible(!navVisible);
+  // };
 
-  const handleDescriptionChange = (event) => {
-    const value = event.target.value;
-    setDescription(value);
-  };
+  // const handleDescriptionChange = (event) => {
+  //   const value = event.target.value;
+  //   setDescription(value);
+  // };
 
-  const handleNameChange = (event) => {
-    const value = event.target.value;
-    setName(value);
-  };
+  // const handleNameChange = (event) => {
+  //   const value = event.target.value;
+  //   setName(value);
+  // };
 
-  const handleDateTimeEatenChange = (event) => {
-    const value = event.target.value;
-    setDateTimeEaten(value);
-  };
+  // const handleDateTimeEatenChange = (event) => {
+  //   const value = event.target.value;
+  //   setDateTimeEaten(value);
+  // };
 
-  const handleTypeChange = (event) => {
-    const value = event.target.value;
-    setType(value);
-  };
+  // const handleTypeChange = (event) => {
+  //   const value = event.target.value;
+  //   setType(value);
+  // };
 
-  const handleSaveButtonChange = (event) => {
-    setSaveButton(true);
-  };
+  // const handleSaveButtonChange = (event) => {
+  //   setSaveButton(true);
+  // };
 
-  const fetchData = async () => {
-    const nutrientUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/natural/nutrients`;
+  // const fetchData = async () => {
+  //   const nutrientUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/natural/nutrients`;
 
-    const fetchConfig = {
-      method: "POST",
-      body: JSON.stringify({ query: query }),
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
+  //   const fetchConfig = {
+  //     method: "POST",
+  //     body: JSON.stringify({ query: query }),
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //   };
 
-    const response = await fetchWithToken(
-      nutrientUrl,
-      "POST",
-      fetchConfig.headers,
-      fetchConfig
-    );
+  //   const response = await fetchWithToken(
+  //     nutrientUrl,
+  //     "POST",
+  //     fetchConfig.headers,
+  //     fetchConfig
+  //   );
 
-    setFoodItems(response);
-    setQuery("");
-    setShowNutrients(true);
-  };
+  //   setFoodItems(response);
+  //   setQuery("");
+  //   setShowNutrients(true);
+  // };
 
-  const handleSeeNutrients = async (event) => {
-    event.preventDefault();
-    fetchData();
-  };
+  // const handleSeeNutrients = async (event) => {
+  //   event.preventDefault();
+  //   fetchData();
+  // };
 
-  const handleLog = async (event) => {
-    setSaveButton(false);
-    setShowNutrients(false);
-    event.preventDefault();
+  // const handleLog = async (event) => {
+  //   setSaveButton(false);
+  //   setShowNutrients(false);
+  //   event.preventDefault();
 
-    const mealData = {
-      description: description,
-      name: name,
-      type: type,
-      datetime_eaten: dateTimeEaten,
-    };
-    const mealUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/meals`;
-    const fetchConfig = {
-      method: "POST",
-      body: JSON.stringify(mealData),
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
+  //   const mealData = {
+  //     description: description,
+  //     name: name,
+  //     type: type,
+  //     datetime_eaten: dateTimeEaten,
+  //   };
+  //   const mealUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/meals`;
+  //   const fetchConfig = {
+  //     method: "POST",
+  //     body: JSON.stringify(mealData),
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //   };
 
-    const response = await fetchWithToken(
-      mealUrl,
-      "POST",
-      fetchConfig.headers,
-      fetchConfig
-    );
+  //   const response = await fetchWithToken(
+  //     mealUrl,
+  //     "POST",
+  //     fetchConfig.headers,
+  //     fetchConfig
+  //   );
 
-    const newFoodItems = foodItems.map((foodItem) => {
-      return {
-        food_name: foodItem.food_name,
-        brand_name: foodItem.brand_name,
-        serving_qty: foodItem.serving_qty,
-        serving_unit: foodItem.serving_unit,
-        serving_weight_grams: foodItem.serving_weight_grams,
-        calories: foodItem.nf_calories,
-        total_fat: foodItem.nf_total_fat,
-        saturated_fat: foodItem.nf_saturated_fat,
-        cholesterol: foodItem.nf_cholesterol,
-        sodium: foodItem.nf_sodium,
-        total_carbohydrate: foodItem.nf_total_carbohydrate,
-        dietary_fiber: foodItem.nf_dietary_fiber,
-        sugars: foodItem.nf_sugars,
-        protein: foodItem.nf_protein,
-        potassium: foodItem.nf_potassium,
-        eaten_id: response.id,
-      };
-    });
+  //   const newFoodItems = foodItems.map((foodItem) => {
+  //     return {
+  //       food_name: foodItem.food_name,
+  //       brand_name: foodItem.brand_name,
+  //       serving_qty: foodItem.serving_qty,
+  //       serving_unit: foodItem.serving_unit,
+  //       serving_weight_grams: foodItem.serving_weight_grams,
+  //       calories: foodItem.nf_calories,
+  //       total_fat: foodItem.nf_total_fat,
+  //       saturated_fat: foodItem.nf_saturated_fat,
+  //       cholesterol: foodItem.nf_cholesterol,
+  //       sodium: foodItem.nf_sodium,
+  //       total_carbohydrate: foodItem.nf_total_carbohydrate,
+  //       dietary_fiber: foodItem.nf_dietary_fiber,
+  //       sugars: foodItem.nf_sugars,
+  //       protein: foodItem.nf_protein,
+  //       potassium: foodItem.nf_potassium,
+  //       eaten_id: response.id,
+  //     };
+  //   });
 
-    const foodItemUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/food_items/${response.id}`;
-    const foodItemFetchConfig = {
-      method: "POST",
-      body: JSON.stringify(newFoodItems),
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
-    await fetchWithToken(
-      foodItemUrl,
-      "POST",
-      foodItemFetchConfig.headers,
-      foodItemFetchConfig
-    );
-    navigateTo("/meal-history");
-  };
+  //   const foodItemUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/api/food_items/${response.id}`;
+  //   const foodItemFetchConfig = {
+  //     method: "POST",
+  //     body: JSON.stringify(newFoodItems),
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //   };
+  //   await fetchWithToken(
+  //     foodItemUrl,
+  //     "POST",
+  //     foodItemFetchConfig.headers,
+  //     foodItemFetchConfig
+  //   );
+  //   navigateTo("/meal-history");
+  // };
 
   return (
     <div>
-      {!navVisible && (
+      {/* {!navVisible && (
         <button
           className="navbar-toggle"
           onClick={toggleNav}
@@ -345,7 +345,8 @@ const MealForm = () => {
             </button>
           )}
         </div>
-      </div>
+      </div> */}
+      <h1>MEAL FORM</h1>
     </div>
   );
 };

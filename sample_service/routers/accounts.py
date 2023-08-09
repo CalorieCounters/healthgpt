@@ -6,13 +6,14 @@ from fastapi import (
     APIRouter,
     Request,
 )
-from authentication import authenticator
+
+# from authentication import authenticator
 from queries.accounts import AccountQueries
 from models.accounts import (
     AccountIn,
     AccountOut,
     DuplicateAccountError,
-    AccountToken,
+    # AccountToken,
     AccountForm,
     HttpError,
 )
@@ -20,17 +21,17 @@ from models.accounts import (
 router = APIRouter()
 
 
-@router.get("/token", response_model=AccountToken | None)
-async def get_token(
-    request: Request,
-    account: AccountIn = Depends(authenticator.try_get_current_account_data),
-) -> AccountToken | None:
-    if account and authenticator.cookie_name in request.cookies:
-        return {
-            "access_token": request.cookies[authenticator.cookie_name],
-            "type": "Bearer",
-            "account": account,
-        }
+# @router.get("/token", response_model=AccountToken | None)
+# async def get_token(
+#     request: Request,
+#     account: AccountIn = Depends(authenticator.try_get_current_account_data),
+# ) -> AccountToken | None:
+#     if account and authenticator.cookie_name in request.cookies:
+#         return {
+#             "access_token": request.cookies[authenticator.cookie_name],
+#             "type": "Bearer",
+#             "account": account,
+#         }
 
 
 @router.get("/api/accounts/{username}", response_model=AccountOut | HttpError)
@@ -46,19 +47,20 @@ async def get_account(
         return record
 
 
-@router.post("/api/accounts", response_model=AccountToken | HttpError)
+@router.post("/api/accounts", response_model=AccountOut | HttpError)
 async def create_account(
     info: AccountIn,
-    request: Request,
-    response: Response,
+    # request: Request,
+    # response: Response,
     repo: AccountQueries = Depends(),
 ):
-    hashed_password = authenticator.hash_password(info.password)
+    # hashed_password = authenticator.hash_password(info.password)
     try:
-        account = repo.create_account(info, hashed_password)
-        form = AccountForm(username=info.username, password=info.password)
-        token = await authenticator.login(response, request, form, repo)
-        return AccountToken(account=account, **token.dict())
+        print("INFRO", info)
+        account = repo.create_account(info)
+        # form = AccountForm(username=info.username, password=info.password)
+        # token = await authenticator.login(response, request, form, repo)
+        return account
     except DuplicateAccountError:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

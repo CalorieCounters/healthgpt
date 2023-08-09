@@ -1,5 +1,6 @@
+from typing import Optional
 from pydantic import BaseModel
-from jwtdown_fastapi.authentication import Token
+# from jwtdown_fastapi.authentication import Token
 
 
 class AccountForm(BaseModel):
@@ -30,9 +31,9 @@ class AccountOut(BaseModel):
     last_name: str
     username: str
     email: str
-    hashed_password: str
+    password: str
     gender: str
 
 
-class AccountToken(Token):
-    account: AccountOut
+# class AccountToken(Token):
+#     account: AccountOut

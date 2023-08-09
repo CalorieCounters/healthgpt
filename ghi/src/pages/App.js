@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
+// import { AuthProvider } from "@galvanize-inc/jwtdown-for-react";
 import Login from "./Login";
 import Signup from "./Signup";
 import Nav from "./Nav";
@@ -17,7 +17,7 @@ function App() {
   const basename = process.env.PUBLIC_URL.replace(domain, '');
   return (
     <BrowserRouter basename={basename}>
-      <AuthProvider baseUrl={process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}>
+      {/* <AuthProvider baseUrl={process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}> */}
         <Nav />
         <div>
           <Routes>
@@ -31,7 +31,7 @@ function App() {
             <Route path="/exercise-history" element={<ExerciseList />} />
           </Routes>
         </div>
-      </AuthProvider>
+      {/* </AuthProvider> */}
     </BrowserRouter>
   );
 }

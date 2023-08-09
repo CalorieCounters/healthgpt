@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Depends
-from authentication import authenticator
+# from authentication import authenticator
 from models.exercises import (
     HttpError,
     ExerciseCreateOut,
@@ -15,7 +15,7 @@ router = APIRouter()
 def get_exercise_data(
     query: dict,
     repo: ExerciseQueries = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data),
+    # account_data: dict = Depends(authenticator.get_current_account_data),
 ):
     return repo.get_exercise(query)
 
@@ -24,19 +24,19 @@ def get_exercise_data(
 def create_exercise(
     exercises: list[Exercise],
     repo: ExerciseQueries = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data),
+    # account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    user_id = account_data["id"]
-    return repo.create(exercises, user_id)
+    # user_id = account_data["id"]
+    return repo.create(exercises)
 
 
 @router.get("/exercises", response_model=list | HttpError)
 def list_exercises(
     repo: ExerciseQueries = Depends(),
-    account_data: dict = Depends(authenticator.get_current_account_data),
+    # account_data: dict = Depends(authenticator.get_current_account_data),
 ):
-    user_id = account_data["id"]
-    return repo.get_all(user_id)
+    # user_id = account_data["id"]
+    return repo.get_all()
 
 
 @router.get("/")

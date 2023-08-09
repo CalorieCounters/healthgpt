@@ -1,10 +1,11 @@
+from typing import Optional
 from db import pool
 from models.accounts import AccountIn, AccountOut, HttpError
 
 
 class AccountQueries:
     def create_account(
-        self, account: AccountIn, hashed_password: str
+        self, account: AccountIn, hashed_password: Optional[str] = ""
     ) -> AccountOut:
         try:
             with pool.connection() as conn:
@@ -27,7 +28,7 @@ class AccountQueries:
                             account.last_name,
                             account.username,
                             account.email,
-                            hashed_password,
+                            account.password,
                             account.gender,
                         ],
                     )
@@ -38,8 +39,8 @@ class AccountQueries:
                         last_name=account.last_name,
                         username=account.username,
                         email=account.email,
-                        hashed_password=hashed_password,
-                        gender=account.gender
+                        password=account.password,
+                        gender=account.gender,
                     )
                     return account
         except Exception as error:
@@ -68,7 +69,7 @@ class AccountQueries:
                         username=record[3],
                         email=record[4],
                         hashed_password=record[5],
-                        gender=record[len(record) - 1]
+                        gender=record[len(record) - 1],
                     )
         except Exception as error:
             return {"detail": str(error)}

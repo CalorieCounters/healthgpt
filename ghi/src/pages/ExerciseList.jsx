@@ -1,47 +1,47 @@
-import React, { useEffect, useState } from "react";
-import useToken from "@galvanize-inc/jwtdown-for-react";
+// import React, { useEffect, useState } from "react";
+// import useToken from "@galvanize-inc/jwtdown-for-react";
 import "../css/ExerciseList.css";
 import Nav from "./Nav";
 
 //TODO: Add Error Handling
 
 const ExerciseList = () => {
-  const { token, fetchWithToken } = useToken();
-  const [exercises, setExercises] = useState([]);
-  const [navVisible, setNavVisible] = useState(false);
+  // const { token, fetchWithToken } = useToken();
+  // const [exercises, setExercises] = useState([]);
+  // const [navVisible, setNavVisible] = useState(false);
 
-  useEffect(() => {
-    const fetchExercises = async () => {
-      const exerciseUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/exercises`;
+  // useEffect(() => {
+  //   const fetchExercises = async () => {
+  //     const exerciseUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/exercises`;
 
-      const fetchConfig = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "application/json",
-        },
-      };
+  //     const fetchConfig = {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //         "Content-Type": "application/json",
+  //       },
+  //     };
 
-      const response = await fetchWithToken(
-        exerciseUrl,
-        "GET",
-        fetchConfig.headers,
-        fetchConfig
-      );
+  //     const response = await fetchWithToken(
+  //       exerciseUrl,
+  //       "GET",
+  //       fetchConfig.headers,
+  //       fetchConfig
+  //     );
 
-      setExercises(response);
-    };
+  //     setExercises(response);
+  //   };
 
-    if (token) fetchExercises();
-    // eslint-disable-next-line
-  }, [token]);
+  //   if (token) fetchExercises();
+  //   // eslint-disable-next-line
+  // }, [token]);
 
-  const toggleNav = () => {
-    setNavVisible(!navVisible);
-  };
+  // const toggleNav = () => {
+  //   setNavVisible(!navVisible);
+  // };
 
   return (
     <div>
-      {!navVisible && (
+      {/* {!navVisible && (
         <button
           className="navbar-toggle"
           onClick={toggleNav}
@@ -94,7 +94,8 @@ const ExerciseList = () => {
             </table>
           </div>
         </div>
-      </div>
+      </div> */}
+      <h1>EXCERSE LIST</h1>
     </div>
   );
 };

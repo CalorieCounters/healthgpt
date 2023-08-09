@@ -1,95 +1,95 @@
-import useToken from "@galvanize-inc/jwtdown-for-react";
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+// import useToken from "@galvanize-inc/jwtdown-for-react";
+// import React, { useState } from "react";
+// import { useNavigate } from "react-router-dom";
 import "../css/ExerciseForm.css";
 import Nav from "./Nav";
 
 //TODO: Add Error Handling
 
 const ExerciseForm = () => {
-  const navigateTo = useNavigate();
-  const { token, fetchWithToken } = useToken();
-  const [query, setQuery] = useState("");
-  const [exercises, setExercises] = useState([]);
-  const [seeExerciseButton, setSeeExerciseButton] = useState(false);
-  const [logButton, setLogButton] = useState(true);
-  const [navVisible, setNavVisible] = useState(false);
+  // const navigateTo = useNavigate();
+  // const { token, fetchWithToken } = useToken();
+  // const [query, setQuery] = useState("");
+  // const [exercises, setExercises] = useState([]);
+  // const [seeExerciseButton, setSeeExerciseButton] = useState(false);
+  // const [logButton, setLogButton] = useState(true);
+  // const [navVisible, setNavVisible] = useState(false);
 
-  const handleQueryChange = (event) => {
-    const value = event.target.value;
-    setQuery(value);
-  };
+  // const handleQueryChange = (event) => {
+  //   const value = event.target.value;
+  //   setQuery(value);
+  // };
 
-  const fetchData = async () => {
-    const exerciseUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/natural/exercises`;
+  // const fetchData = async () => {
+  //   const exerciseUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/natural/exercises`;
 
-    const fetchConfig = {
-      method: "POST",
-      body: JSON.stringify({ query: query }),
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
+  //   const fetchConfig = {
+  //     method: "POST",
+  //     body: JSON.stringify({ query: query }),
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //   };
 
-    const response = await fetchWithToken(
-      exerciseUrl,
-      "POST",
-      fetchConfig.headers,
-      fetchConfig
-    );
-    setExercises(response);
-    setQuery("");
-  };
+  //   const response = await fetchWithToken(
+  //     exerciseUrl,
+  //     "POST",
+  //     fetchConfig.headers,
+  //     fetchConfig
+  //   );
+  //   setExercises(response);
+  //   setQuery("");
+  // };
 
-  const handleSeeExercise = async (event) => {
-    event.preventDefault();
+  // const handleSeeExercise = async (event) => {
+  //   event.preventDefault();
 
-    fetchData();
-    setSeeExerciseButton(true);
-    setLogButton(false);
-  };
+  //   fetchData();
+  //   setSeeExerciseButton(true);
+  //   setLogButton(false);
+  // };
 
-  const handleLog = async (event) => {
-    event.preventDefault();
+  // const handleLog = async (event) => {
+  //   event.preventDefault();
 
-    const exerciseData = [];
-    for (let i = 0; i < exercises.length; i++) {
-      const exercise = {};
-      exercise["name_type"] = exercises[i].name;
-      exercise["duration"] = exercises[i].duration_min;
-      exercise["burned_calories"] = exercises[i].nf_calories;
-      exerciseData.push(exercise);
-    }
+  //   const exerciseData = [];
+  //   for (let i = 0; i < exercises.length; i++) {
+  //     const exercise = {};
+  //     exercise["name_type"] = exercises[i].name;
+  //     exercise["duration"] = exercises[i].duration_min;
+  //     exercise["burned_calories"] = exercises[i].nf_calories;
+  //     exerciseData.push(exercise);
+  //   }
 
-    const exerciseUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/exercise`;
+  //   const exerciseUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/exercise`;
 
-    const fetchConfig = {
-      method: "POST",
-      body: JSON.stringify(exerciseData),
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
+  //   const fetchConfig = {
+  //     method: "POST",
+  //     body: JSON.stringify(exerciseData),
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //   };
 
-    await fetchWithToken(
-      exerciseUrl,
-      "POST",
-      fetchConfig.headers,
-      fetchConfig
-    );
+  //   await fetchWithToken(
+  //     exerciseUrl,
+  //     "POST",
+  //     fetchConfig.headers,
+  //     fetchConfig
+  //   );
 
-    navigateTo("/exercise-history");
-  };
+  //   navigateTo("/exercise-history");
+  // };
 
-  const toggleNav = () => {
-    setNavVisible(!navVisible);
-  };
+  // const toggleNav = () => {
+  //   setNavVisible(!navVisible);
+  // };
 
   return (
     <div>
-      {!navVisible && (
+      {/* {!navVisible && (
         <button
           className="navbar-toggle"
           onClick={toggleNav}
@@ -181,7 +181,8 @@ const ExerciseForm = () => {
             </button>
           )}
         </div>
-      </div>
+      </div> */}
+      <h1>EXCERSIE FORM</h1>
     </div>
   );
 };

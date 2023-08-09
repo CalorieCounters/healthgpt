@@ -1,3 +1,4 @@
+from typing import Optional
 from db import pool
 from models.meals import EatenMeal, MealIn, FoodItem, HttpError
 import os
@@ -10,7 +11,7 @@ X_APP_KEY = os.environ["X_APP_KEY"]
 
 
 class MealQueries:
-    def create(self, meal: MealIn, user_id: int) -> EatenMeal:
+    def create(self, meal: MealIn, user_id: Optional[int]) -> EatenMeal:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -65,7 +66,9 @@ class MealQueries:
         except Exception as error:
             return {"detail": str(error)}
 
-    def get_all(self, user_id: int, show_today: bool) -> list | HttpError:
+    def get_all(
+        self, user_id: Optional[int], show_today: bool
+    ) -> list | HttpError:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:
@@ -187,9 +190,7 @@ class FoodItemQueries:
                         [eaten_id],
                     )
                     colnames = [desc[0] for desc in db.description]
-                    food_items = (
-                        db.fetchall()
-                    )
+                    food_items = db.fetchall()
                     response_data = map_fields_to_array(food_items, colnames)
 
                     return response_data

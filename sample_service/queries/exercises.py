@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Optional, Union
 from db import pool
 from models.exercises import Exercise, ExerciseCreateOut, Exercises, HttpError
 import os
@@ -24,7 +24,7 @@ class ExerciseQueries:
         return exercises
 
     def create(
-        self, exercises: list[Exercise], user_id: int
+        self, exercises: list[Exercise], user_id: Optional[int]
     ) -> Union[ExerciseCreateOut, HttpError]:
         try:
             with pool.connection() as conn:
@@ -53,7 +53,7 @@ class ExerciseQueries:
         except Exception as error:
             return {"message": str(error)}
 
-    def get_all(self, user_id: int) -> Union[Exercises, HttpError]:
+    def get_all(self, user_id: Optional[int]) -> Union[Exercises, HttpError]:
         try:
             with pool.connection() as conn:
                 with conn.cursor() as db:

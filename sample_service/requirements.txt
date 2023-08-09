@@ -3,5 +3,5 @@ uvicorn[standard]==0.17.6
 pytest
 psycopg
 psycopg_pool
-jwtdown_fastapi>= 0.5.0
+# jwtdown_fastapi>= 0.5.0
 requests

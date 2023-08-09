@@ -1,231 +1,231 @@
-import React, { useEffect, useState } from "react";
-import useToken from "@galvanize-inc/jwtdown-for-react";
-import Chart from "chart.js/auto";
+// import React, { useEffect, useState } from "react";
+// import useToken from "@galvanize-inc/jwtdown-for-react";
+// import Chart from "chart.js/auto";
 import Nav from "./Nav";
 import "../css/Dashboard.css";
 
 //TODO: Add Error Handling
 
 function Dashboard() {
-  const [eatenMeals, setEatenMeals] = useState([]);
-  const [mealTypes, setMealTypes] = useState([]);
-  const [calories, setCalories] = useState({
-    burned: 0,
-    eaten: 0,
-  });
-  const { token, fetchWithToken } = useToken();
-  const [navVisible, setNavVisible] = useState(false);
+  // const [eatenMeals, setEatenMeals] = useState([]);
+  // const [mealTypes, setMealTypes] = useState([]);
+  // const [calories, setCalories] = useState({
+  //   burned: 0,
+  //   eaten: 0,
+  // });
+  // const { token, fetchWithToken } = useToken();
+  // const [navVisible, setNavVisible] = useState(false);
 
-  const addMealCalories = async (mealId) => {
-    const url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/get_meal_calories/${mealId}`;
+  // const addMealCalories = async (mealId) => {
+  //   const url = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/get_meal_calories/${mealId}`;
 
-    const fetchConfig = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
-    const response = await fetchWithToken(
-      url,
-      "GET",
-      fetchConfig.headers,
-      fetchConfig
-    );
-    return response;
-  };
+  //   const fetchConfig = {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //   };
+  //   const response = await fetchWithToken(
+  //     url,
+  //     "GET",
+  //     fetchConfig.headers,
+  //     fetchConfig
+  //   );
+  //   return response;
+  // };
 
-  const fetchEatenMealsData = async () => {
-    const isToday = true;
-    const nutritionUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/eaten_meals/${isToday}`;
+  // const fetchEatenMealsData = async () => {
+  //   const isToday = true;
+  //   const nutritionUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/eaten_meals/${isToday}`;
 
-    const fetchConfig = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
-    const eatenMealsResponse = await fetchWithToken(
-      nutritionUrl,
-      "GET",
-      fetchConfig.headers,
-      fetchConfig
-    );
-    const calorieFetches = eatenMealsResponse.map((eatenMeal) => {
-      return addMealCalories(eatenMeal[0]);
-    });
+  //   const fetchConfig = {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //   };
+  //   const eatenMealsResponse = await fetchWithToken(
+  //     nutritionUrl,
+  //     "GET",
+  //     fetchConfig.headers,
+  //     fetchConfig
+  //   );
+  //   const calorieFetches = eatenMealsResponse.map((eatenMeal) => {
+  //     return addMealCalories(eatenMeal[0]);
+  //   });
 
-    const fetchAll = async () => {
-      const arrayOfCalories = await Promise.all(calorieFetches);
+  //   const fetchAll = async () => {
+  //     const arrayOfCalories = await Promise.all(calorieFetches);
 
-      const updatedEatenMeals = eatenMealsResponse.map((eatenMeal, i) => {
-        const calorie = arrayOfCalories[i];
+  //     const updatedEatenMeals = eatenMealsResponse.map((eatenMeal, i) => {
+  //       const calorie = arrayOfCalories[i];
 
-        return [...eatenMeal, calorie];
-      });
+  //       return [...eatenMeal, calorie];
+  //     });
 
-      setEatenMeals(updatedEatenMeals);
+  //     setEatenMeals(updatedEatenMeals);
 
-      const mealTypeCalories = updatedEatenMeals.reduce(
-        (result, innerArray) => {
-          const mealType = innerArray[2];
-          const calories = innerArray[innerArray.length - 1];
+  //     const mealTypeCalories = updatedEatenMeals.reduce(
+  //       (result, innerArray) => {
+  //         const mealType = innerArray[2];
+  //         const calories = innerArray[innerArray.length - 1];
 
-          if (!result[mealType]) {
-            result[mealType] = 0;
-          }
+  //         if (!result[mealType]) {
+  //           result[mealType] = 0;
+  //         }
 
-          result[mealType] += calories;
-          return result;
-        },
-        {}
-      );
+  //         result[mealType] += calories;
+  //         return result;
+  //       },
+  //       {}
+  //     );
 
-      setMealTypes(mealTypeCalories);
+  //     setMealTypes(mealTypeCalories);
 
-      const eatenCalories = updatedEatenMeals.reduce((result, innerArray) => {
-        const calories = innerArray[innerArray.length - 1];
+  //     const eatenCalories = updatedEatenMeals.reduce((result, innerArray) => {
+  //       const calories = innerArray[innerArray.length - 1];
 
-        result += calories;
-        return result;
-      }, 0);
+  //       result += calories;
+  //       return result;
+  //     }, 0);
 
-      setCalories((previousCalories) => ({
-        ...previousCalories,
-        eaten: eatenCalories,
-      }));
-    };
+  //     setCalories((previousCalories) => ({
+  //       ...previousCalories,
+  //       eaten: eatenCalories,
+  //     }));
+  //   };
 
-    fetchAll();
-  };
+  //   fetchAll();
+  // };
 
-  const fetchExerciseData = async () => {
-    const exerciseUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/exercises`;
+  // const fetchExerciseData = async () => {
+  //   const exerciseUrl = `${process.env.REACT_APP_SAMPLE_SERVICE_API_HOST}/exercises`;
 
-    const fetchConfig = {
-      headers: {
-        Authorization: `Bearer ${token}`,
-        "Content-Type": "application/json",
-      },
-    };
+  //   const fetchConfig = {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //       "Content-Type": "application/json",
+  //     },
+  //   };
 
-    const response = await fetchWithToken(
-      exerciseUrl,
-      "GET",
-      fetchConfig.headers,
-      fetchConfig
-    );
+  //   const response = await fetchWithToken(
+  //     exerciseUrl,
+  //     "GET",
+  //     fetchConfig.headers,
+  //     fetchConfig
+  //   );
 
-    const filtered = response.filter((exercise) => {
-      const exerciseDate = new Date(exercise.datetime_created);
-      const today = new Date();
+  //   const filtered = response.filter((exercise) => {
+  //     const exerciseDate = new Date(exercise.datetime_created);
+  //     const today = new Date();
 
-      const fullExerciseDate = `${
-        exerciseDate.getMonth() + 1
-      }-${exerciseDate.getDate()}-${exerciseDate.getFullYear()}`;
+  //     const fullExerciseDate = `${
+  //       exerciseDate.getMonth() + 1
+  //     }-${exerciseDate.getDate()}-${exerciseDate.getFullYear()}`;
 
-      const fullTodayDate = `${
-        today.getMonth() + 1
-      }-${today.getDate()}-${today.getFullYear()}`;
+  //     const fullTodayDate = `${
+  //       today.getMonth() + 1
+  //     }-${today.getDate()}-${today.getFullYear()}`;
 
-      return fullExerciseDate === fullTodayDate;
-    });
+  //     return fullExerciseDate === fullTodayDate;
+  //   });
 
-    const burnedCalories = filtered.reduce((result, exercise) => {
-      const burned = exercise.est_burned_calories;
-      result += burned;
-      return result;
-    }, 0);
+  //   const burnedCalories = filtered.reduce((result, exercise) => {
+  //     const burned = exercise.est_burned_calories;
+  //     result += burned;
+  //     return result;
+  //   }, 0);
 
-    setCalories((previousCalories) => ({
-      ...previousCalories,
-      burned: burnedCalories,
-    }));
-  };
+  //   setCalories((previousCalories) => ({
+  //     ...previousCalories,
+  //     burned: burnedCalories,
+  //   }));
+  // };
 
-  useEffect(() => {
-    if (token) fetchEatenMealsData() && fetchExerciseData();
-    // eslint-disable-next-line
-  }, [token]);
+  // useEffect(() => {
+  //   if (token) fetchEatenMealsData() && fetchExerciseData();
+  //   // eslint-disable-next-line
+  // }, [token]);
 
-  const toggleNav = () => {
-    setNavVisible(!navVisible);
-  };
+  // const toggleNav = () => {
+  //   setNavVisible(!navVisible);
+  // };
 
-  useEffect(() => {
-    let chart;
-    if (eatenMeals.length > 0) {
-      chart = new Chart(document.getElementById("eatenCaloriesCharts"), {
-        type: "bar",
-        options: {
-          animation: false,
-          plugins: {
-            legend: {
-              display: false,
-            },
-            tooltip: {
-              enabled: false,
-            },
-          },
-        },
-        data: {
-          labels: Object.keys(mealTypes),
-          datasets: [
-            {
-              label: "Meal Type",
-              data: Object.values(mealTypes),
-              backgroundColor: [
-                "#9294C2",
-                "#9181B2",
-                "#916E9F",
-                "#915A89",
-                "#8E4670"]
-            },
-          ],
-        },
-      });
-    }
-    return () => {
-      chart?.destroy();
-    };
-    // eslint-disable-next-line
-  }, [eatenMeals.length]);
+  // useEffect(() => {
+  //   let chart;
+  //   if (eatenMeals.length > 0) {
+  //     chart = new Chart(document.getElementById("eatenCaloriesCharts"), {
+  //       type: "bar",
+  //       options: {
+  //         animation: false,
+  //         plugins: {
+  //           legend: {
+  //             display: false,
+  //           },
+  //           tooltip: {
+  //             enabled: false,
+  //           },
+  //         },
+  //       },
+  //       data: {
+  //         labels: Object.keys(mealTypes),
+  //         datasets: [
+  //           {
+  //             label: "Meal Type",
+  //             data: Object.values(mealTypes),
+  //             backgroundColor: [
+  //               "#9294C2",
+  //               "#9181B2",
+  //               "#916E9F",
+  //               "#915A89",
+  //               "#8E4670"]
+  //           },
+  //         ],
+  //       },
+  //     });
+  //   }
+  //   return () => {
+  //     chart?.destroy();
+  //   };
+  //   // eslint-disable-next-line
+  // }, [eatenMeals.length]);
 
-  useEffect(() => {
-    let chart;
-    if (eatenMeals.length > 0) {
-      chart = new Chart(document.getElementById("burnedCaloriesCharts"), {
-        type: "pie",
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: "top",
-            },
-          },
-        },
-        data: {
-          labels: Object.keys(calories),
-          datasets: [
-            {
-              label: "Meal Type",
-              data: Object.values(calories),
-              backgroundColor: [
-                "#6DBFE8",
-                "#916E9F", ]
-            },
-          ],
-        },
-      });
-    }
-    return () => {
-      chart?.destroy();
-    };
-    // eslint-disable-next-line
-  }, [eatenMeals.length]);
+  // useEffect(() => {
+  //   let chart;
+  //   if (eatenMeals.length > 0) {
+  //     chart = new Chart(document.getElementById("burnedCaloriesCharts"), {
+  //       type: "pie",
+  //       options: {
+  //         responsive: true,
+  //         plugins: {
+  //           legend: {
+  //             position: "top",
+  //           },
+  //         },
+  //       },
+  //       data: {
+  //         labels: Object.keys(calories),
+  //         datasets: [
+  //           {
+  //             label: "Meal Type",
+  //             data: Object.values(calories),
+  //             backgroundColor: [
+  //               "#6DBFE8",
+  //               "#916E9F", ]
+  //           },
+  //         ],
+  //       },
+  //     });
+  //   }
+  //   return () => {
+  //     chart?.destroy();
+  //   };
+  //   // eslint-disable-next-line
+  // }, [eatenMeals.length]);
 
   return (
     <div>
-      {!navVisible && (
+      {/* {!navVisible && (
         <button
           className="navbar-toggle"
           onClick={toggleNav}
@@ -255,8 +255,8 @@ function Dashboard() {
         <div className="chart-item">
           <canvas id="burnedCaloriesCharts" />
         </div>
-      </div>
-
+      </div> */}
+      <h1>HELLLO</h1>
     </div>
   );
 }

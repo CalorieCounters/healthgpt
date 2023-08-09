@@ -2,7 +2,7 @@ from fastapi.testclient import TestClient
 from main import app
 from queries.meals import MealQueries
 from models.meals import MealIn, EatenMeal
-from authentication import authenticator
+# from authentication import authenticator
 from datetime import date
 from fastapi.encoders import jsonable_encoder
 
