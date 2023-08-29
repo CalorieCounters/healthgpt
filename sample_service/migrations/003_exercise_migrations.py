@@ -8,7 +8,7 @@ steps = [
             duration FLOAT NOT NULL,
             est_burned_calories FLOAT NOT NULL,
             datetime_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            user_id INT REFERENCES accounts (id)
+            user_id VARCHAR(255) REFERENCES accounts (uid)
         );
         """,
         # "Down" SQL statement

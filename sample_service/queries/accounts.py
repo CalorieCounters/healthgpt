@@ -1,74 +1,67 @@
-from typing import Optional
 from db import pool
 from models.accounts import AccountIn, AccountOut, HttpError
 
 
 class AccountQueries:
-    def create_account(
-        self, account: AccountIn, hashed_password: Optional[str] = ""
-    ) -> AccountOut:
+    def create_account(self, account: AccountIn) -> AccountOut:
         try:
+            print("ACCCOUNT IN HERE", account)
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
                         INSERT INTO accounts (
+                            uid,
                             first_name,
                             last_name,
-                            username,
                             email,
-                            hashed_password,
                             gender
                             )
-                        VALUES (%s, %s, %s, %s, %s, %s)
-                        RETURNING id;
+                        VALUES (%s, %s, %s, %s, %s)
+                        RETURNING uid;
                         """,
                         [
+                            account.uid,
                             account.first_name,
                             account.last_name,
-                            account.username,
                             account.email,
-                            account.password,
                             account.gender,
                         ],
                     )
-                    id = result.fetchone()[0]
+                    uid = result.fetchone()[0]
                     account = AccountOut(
-                        id=id,
+                        uid=uid,
                         first_name=account.first_name,
                         last_name=account.last_name,
-                        username=account.username,
                         email=account.email,
-                        password=account.password,
                         gender=account.gender,
                     )
                     return account
         except Exception as error:
             return {"detail": str(error)}
 
-    def get_account(self, username: str) -> AccountOut | HttpError:
+    def get_account(self, uid: str) -> AccountOut | None:
         try:
+            print("WHAT IS IT", uid)
             with pool.connection() as conn:
                 with conn.cursor() as db:
                     result = db.execute(
                         """
                         SELECT *
                         FROM accounts
-                        WHERE username = %s;
+                        WHERE uid = %s;
                         """,
-                        [username],
+                        [uid],
                     )
                     record = result.fetchone()
-
+                    print("GET ACCOUNT", record)
                     if record is None:
-                        return HttpError(message="does not exist")
+                        return None
                     return AccountOut(
-                        id=record[0],
+                        uid,
                         first_name=record[1],
                         last_name=record[2],
-                        username=record[3],
-                        email=record[4],
-                        hashed_password=record[5],
+                        email=record[3],
                         gender=record[len(record) - 1],
                     )
         except Exception as error:

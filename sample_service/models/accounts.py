@@ -1,5 +1,6 @@
 from typing import Optional
 from pydantic import BaseModel
+
 # from jwtdown_fastapi.authentication import Token
 
 
@@ -17,22 +18,15 @@ class DuplicateAccountError(ValueError):
 
 
 class AccountIn(BaseModel):
-    first_name: str
-    last_name: str
-    username: str
+    uid: str
+    first_name: Optional[str]
+    last_name: Optional[str]
     email: str
-    password: str
-    gender: str
+    gender: Optional[str]
 
 
-class AccountOut(BaseModel):
-    id: int
-    first_name: str
-    last_name: str
-    username: str
-    email: str
-    password: str
-    gender: str
+class AccountOut(AccountIn):
+    pass
 
 
 # class AccountToken(Token):

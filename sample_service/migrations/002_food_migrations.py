@@ -8,7 +8,7 @@ steps = [
             type VARCHAR(255) NOT NULL,
             datetime_eaten TIMESTAMP,
             datetime_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-            user_id INT REFERENCES accounts (id)
+            user_id VARCHAR(255) REFERENCES accounts (uid)
         );
         """,
         # "Down" SQL statement
