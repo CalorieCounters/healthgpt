@@ -1,6 +1,6 @@
 // import useToken from "@galvanize-inc/jwtdown-for-react";
-import React, { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React from "react";
+// import { useNavigate } from "react-router-dom";
 
 // TODO: Add error handling
 import firebase from 'firebase/compat/app';
